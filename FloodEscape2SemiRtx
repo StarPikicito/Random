@@ -42,6 +42,6 @@ end
 
 map.Removing:Connect(function(lol)
 game.Workspace.Multiplayer:WaitForChild("Map")
-game.Workspace.Multiplayer.Map:WaitForChild("ExitRegion").Parent
+map = game.Workspace.Multiplayer.Map:WaitForChild("ExitRegion").Parent
 um()
 end)
