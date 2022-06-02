@@ -12,7 +12,7 @@ l.Standard_Bloom.Size = 1
 s.Size = 1000
 s.Name = "Hiix" .. tostring(math.random(1,10000))
 s.Intensity = 1
-game:GetService("Lighting").ColorCorrection.Saturation = 0
+game:GetService("Lighting").ColorCorrection.Saturation = 1
 r = game:GetService("Lighting")
 r["Water_Bloom"].Intensity = 2
 
