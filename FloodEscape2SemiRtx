@@ -1,10 +1,24 @@
 a = game.SoundService.Underwater.Equalizer
 l = game.Lighting
+map = workspace.Multiplayer:WaitForChild("ExitRegion").Parent
 s = Instance.new("BloomEffect",l)
+
+
+function um()
+for i,v in pairs(map:GetDescendants()) do
+if v:IsA("BasePart") then
+umm = Instance.new("PointLight",v)
+umm.Brightness = 0.2
+umm.Range = 6
+end
+end
+end
+
 
 a.HighGain = -50
 a.LowGain = 8
 a.MidGain = -30
+
 
 l.Water_Blur.Size = 13
 l.Standard_Bloom.Size = 1000
@@ -16,6 +30,7 @@ game:GetService("Lighting").ColorCorrection.Saturation = 1
 r = game:GetService("Lighting")
 r["Water_Bloom"].Intensity = 2
 
+
 for i,v in pairs(game.Workspace:GetDescendants()) do
 if v:IsA("BasePart") then
 n = Instance.new("PointLight",v)
@@ -23,3 +38,8 @@ n.Brightness = 0.2
 n.Range = 6
 end
 end
+
+map.Removing:Connect(function(lol)
+game.Workspace.Multiplayer:WaitForChild("ExitRegion")
+um()
+end)
