@@ -1,6 +1,7 @@
 a = game.SoundService.Underwater.Equalizer
 l = game.Lighting
-map = workspace.Multiplayer:WaitForChild("ExitRegion").Parent
+workspace.Multiplayer:WaitForChild("Map")
+map = workspace.Multiplayer.Map:WaitForChild("ExitRegion").Parent
 s = Instance.new("BloomEffect",l)
 
 
@@ -40,6 +41,7 @@ end
 end
 
 map.Removing:Connect(function(lol)
-game.Workspace.Multiplayer:WaitForChild("ExitRegion")
+game.Workspace.Multiplayer:WaitForChild("Map")
+game.Workspace.Multiplayer.Map:WaitForChild("ExitRegion").Parent
 um()
 end)
