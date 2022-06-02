@@ -1,8 +1,6 @@
 a = game.SoundService.Underwater.Equalizer
 l = game.Lighting
-workspace.Multiplayer:WaitForChild("Map")
-print("Map Found!")
-map = workspace.Multiplayer.Map
+map = workspace.Multiplayer:WaitForChild("Map")
 s = Instance.new("BloomEffect",l)
 
 
@@ -42,7 +40,6 @@ end
 end
 
 map.Removing:Connect(function(lol)
-game.Workspace.Multiplayer:WaitForChild("Map")
-map = game.Workspace.Multiplayer.Map
+map = game.Workspace.Multiplayer:WaitForChild("Map")
 um()
 end)
