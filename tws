@@ -1,20 +1,29 @@
 for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
     v:Disable()
 end
-x = 15
-repeat wait(35)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").MainPlace.DELIVERtm.Boxes.Position)
-fireclickdetector(game:GetService("Workspace").MainPlace.DELIVERtm.Boxes.ClickDetector)
-wait(.5)
-if game.Players.LocalPlayer.Backpack:FindFirstChild("Box") then
-game.Players.LocalPlayer.Backpack.Box.Parent = game.Players.LocalPlayer.Character
-else
-game.Players.LocalPlayer.Backpack["Golden Box"].Parent = game.Players.LocalPlayer.Character
+
+function CreateTween(inst, props, dur, es, ed, ...)
+    game:GetService("TweenService"):Create(inst, TweenInfo.new(dur, Enum.EasingStyle[es], Enum.EasingDirection[ed], ...), props):Play()
 end
-wait(20)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").UnderGround.Walls["ELEVATOR 2: THE SEQUEL"].ElevatorShaft.Part.Position)
-wait(15)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").UnderGround.Walls.Wood.Position + Vector3.new(0,5,0))
-wait(5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").MainPlace.DELIVERtm.DeliverBar.Position - Vector3.new(0,1,0))
-until x == 16
+
+for a,b in next, workspace:GetDescendants() do
+    if b:IsA('Seat') then b:Destroy() end
+end
+
+getgenv().enabled2 = true
+
+local boxes = game:GetService("Workspace").MainPlace.DELIVERtm.Boxes
+local players = game:GetService('Players')
+
+while wait(25.5) and getgenv().enabled2 do
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.CFrame * CFrame.new(0, 2, 0)}, 9, "Linear", "In")
+    wait(9)
+    fireclickdetector(boxes.ClickDetector)
+    wait(.5)
+    for a,b in next, players.LocalPlayer.Backpack:GetChildren() do
+        if string.match(string.lower(b.Name), "box") then
+            b.Parent = players.LocalPlayer.Character
+        end
+    end
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.Parent.DeliverBar.CFrame * CFrame.new(0, -1, 0)}, 9, "Linear", "In")
+end
