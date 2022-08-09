@@ -7,6 +7,7 @@ s = Instance.new("BloomEffect",l)
 function um()
 for i,v in pairs(map:GetDescendants()) do
 if v:IsA("BasePart") then
+v.Reflectance = 0.5
 umm = Instance.new("PointLight",v)
 umm.Brightness = 0.2
 umm.Range = 6
