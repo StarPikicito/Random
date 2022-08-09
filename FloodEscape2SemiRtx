@@ -43,7 +43,7 @@ end
 end
 
 while wait(1) do
-if not workspace.Multiplayer:WaitForChild("map"):FindFirstChild("AlreadyUpdated") then
+if not workspace.Multiplayer:WaitForChild("Map"):FindFirstChild("AlreadyUpdated") then
 wait()
 update()
 end
