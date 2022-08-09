@@ -4,7 +4,9 @@ map = workspace.Multiplayer:WaitForChild("Map")
 s = Instance.new("BloomEffect",l)
 
 
-function um()
+function update()
+alr = Instance.new("BoolValue")
+alr.Name = "AlreadyUpdated"
 for i,v in pairs(map:GetDescendants()) do
 if v:IsA("BasePart") then
 v.Reflectance = 0.5
@@ -40,7 +42,9 @@ n.Range = 6
 end
 end
 
-map.Removing:Connect(function(lol)
-map = game.Workspace.Multiplayer:WaitForChild("Map")
-um()
-end)
+while wait(1) do
+if not workspace.Multiplayer:WaitForChild("map"):FindFirstChild("AlreadyUpdated") then
+wait()
+update()
+end
+end
