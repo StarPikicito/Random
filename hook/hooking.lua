@@ -2,15 +2,13 @@
 uwu??
 ]]
 protec = protect_function and protect or newcclosure
-game:GetService("Players").Changed:Connect(function()
-game:GetService("Players").Name = "Players"
-end)
+lp = game:GetService("Players").LocalPlayer
 local oldhook
 
 oldhook = hookmetamethod(game, "__namecall", protec(function(Self, ...)
 	local method = getnamecallmethod()
 
-	if not checkcaller() and Self == game.Players.LocalPlayer and (method == "Kick" or method == "kick") then
+	if not checkcaller() and Self == lp and (method == "Kick" or method == "kick") then
 		return wait(9e9)
 	end
 
