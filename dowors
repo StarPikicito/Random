@@ -1,0 +1,10 @@
+game:GetService("Workspace").CurrentRooms.ChildAdded:Connect(function(c)
+task.wait(.1)
+game.Players.LocalPlayer.Character.Collision.CFrame = CFrame.new(c:WaitForChild("Door"):WaitForChild("Hidden").Position)
+task.wait(.05)
+c.Door.ClientOpen:FireServer()
+if c.Parent:FindFirstChild("51") and not c.Parent:FindFirstChild("53") then
+    task.wait(10)
+    game.Players.LocalPlayer.Character.Collision.CFrame = CFrame.new(game:GetService("Workspace").CurrentRooms["52"]:WaitForChild("Door"):WaitForChild("Hidden").Position)
+end
+end)
