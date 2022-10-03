@@ -1,3 +1,9 @@
+local plr = game:service("Players").LocalPlayer
+function Time(targetpos)
+    local tme = (targetpos - plr.Character.HumanoidRootPart.Position).Magnitude / plr.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
+    return tme
+end
+
 for i,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do
     v:Disable()
 end
@@ -16,8 +22,8 @@ local boxes = game:GetService("Workspace").MainPlace.DELIVERtm.Boxes
 local players = game:GetService('Players')
 
 while wait(25.5) and getgenv().enabled2 do
-    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.CFrame * CFrame.new(0, 2, 0)}, 9, "Linear", "In")
-    wait(9)
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.CFrame * CFrame.new(0, 2, 0)}, Time(boxes.Position) - 3, "Linear", "In")
+    wait(18)
     fireclickdetector(boxes.ClickDetector)
     wait(.5)
     for a,b in next, players.LocalPlayer.Backpack:GetChildren() do
@@ -25,5 +31,5 @@ while wait(25.5) and getgenv().enabled2 do
             b.Parent = players.LocalPlayer.Character
         end
     end
-    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.Parent.DeliverBar.CFrame * CFrame.new(0, -1, 0)}, 9, "Linear", "In")
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.Parent.DeliverBar.CFrame * CFrame.new(0, -1, 0)}, Time(boxes.Parent.DeliverBar.Position) - 3, "Linear", "In")
 end
