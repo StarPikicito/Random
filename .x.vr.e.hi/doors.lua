@@ -309,7 +309,7 @@ sec2:Button{
         if game:GetService("ReplicatedStorage").GameData.Preload.Value == true then
         game:GetService("ReplicatedStorage").Bricks.PreRunShop:FireServer("M249")
         else
-        makeNotification("You can only trigger anticheat while in shop!")
+        makeNotification("error","dot.hub | Error Handler","You can only trigger anticheat while in shop!")
         end
     end
 }
