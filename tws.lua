@@ -22,8 +22,8 @@ local boxes = game:GetService("Workspace").MainPlace.DELIVERtm.Boxes
 local players = game:GetService('Players')
 
 while wait(25.5) and getgenv().enabled2 do
-    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.CFrame * CFrame.new(0, 2, 0)}, Time(boxes.Position) - 3, "Linear", "In")
-    wait(18)
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.CFrame * CFrame.new(0, 2, 0)}, Time(boxes.Position) + math.random(0,3), "Linear", "In")
+    wait(21)
     fireclickdetector(boxes.ClickDetector)
     wait(.5)
     for a,b in next, players.LocalPlayer.Backpack:GetChildren() do
@@ -31,5 +31,5 @@ while wait(25.5) and getgenv().enabled2 do
             b.Parent = players.LocalPlayer.Character
         end
     end
-    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.Parent.DeliverBar.CFrame * CFrame.new(0, -1, 0)}, Time(boxes.Parent.DeliverBar.Position) - 3, "Linear", "In")
+    CreateTween(players.LocalPlayer.Character.HumanoidRootPart, {CFrame = boxes.Parent.DeliverBar.CFrame * CFrame.new(0, -1, 0)}, Time(boxes.Parent.DeliverBar.Position) + math.random(0,3), "Linear", "In")
 end
