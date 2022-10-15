@@ -35,47 +35,47 @@ if hookfunc or hookfunction then
     h(
         print,
         function()
-            return
+            return false
         end
     )
     h(
         n,
         function()
-            return
+            return false
         end
     )
     h(
         writefile,
         function()
-            return
+            return false
         end
     )
     h(
         makefolder,
         function()
-            return
+            return false
         end
     )
     h(
         rconsoleprint,
         function()
-            return
+            return false
         end
     )
     h(
         warn,
         function()
-            return
+            return false
         end
     )
     h(
         error,
         function()
-            return
+            return false
         end
     )
     h(appendfile,function()
-    return
+    return false
     end)
 end
 
