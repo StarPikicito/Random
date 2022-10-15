@@ -49,6 +49,7 @@ game.DescendantAdded:Connect(
     function(v)
         if v.IsA(v, "TextLabel") or v.IsA(v, "TextButton") or v.IsA(v, "TextBox") then
             if string.match(string.lower(v.Text), "https://www.dis") or string.match(v.Text, "p5clQlrBUDE") then
+               v.Text = 'no'
                 game.Players.LocalPlayer.Kick(game.Players.LocalPlayer,"fuck off retard")
                 error("...")
                 game.Players.LocalPlayer:Kick("fuck off retard")
