@@ -11,7 +11,7 @@ if hookfunc or hookfunction then
         end
     )
 
-    string.byte()
+    string.byte('sssh')
 
     if ww ~= true then
         game.Players.LocalPlayer.Kick(game.Players.LocalPlayer, "fuck off retard")
