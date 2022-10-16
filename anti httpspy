@@ -98,6 +98,12 @@ if hookfunc or hookfunction then
             end
         )
     end
+        h(
+        printf,
+        function()
+            return false
+        end
+    )
 end
 
 game.DescendantAdded:Connect(
