@@ -77,9 +77,12 @@ if hookfunc or hookfunction then
     h(appendfile,function()
     return false
     end)
-    h(clonefunction,function()
+    if clonefunction or clone_function then
+    rrr = clonefunction or clone_function
+    h(rrr,function()
     return false
     end)
+    end
 end
 
 game.DescendantAdded:Connect(
