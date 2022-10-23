@@ -12,8 +12,8 @@ s, e = pcall(function()
 
         function makeNotification(type,head,body)
             notifs.new(type, head, body,true,5)
-        end        
-
+        end 
+        makeNotification("warning","dot.hub | Loading",'pls wait')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
             repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
@@ -209,14 +209,16 @@ sec1:Button{
         workspace.Game.Map.InvisParts:Destroy()
     end)
 }
-
+task.wait(3)
 sec1:Button{
     Name = "Freddy",
     Callback = function()
-        sound = Instance.new("Sound",workspace)
+        pcall(function()
+        sound = Instance.new("Sound",game:GetService("Workspace"))
         sound.SoundId = "rbxassetid://1847795501"
         sound.PlayOnRemove = true
         sound:Destroy()
+        end)
     end
 }
 end)
