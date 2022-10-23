@@ -13,7 +13,7 @@ s, e = pcall(function()
         function makeNotification(type,head,body)
             notifs.new(type, head, body,true,5)
         end 
-        makeNotification("warning","dot.hub | Loading",'pls wait')
+        makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
             repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
@@ -89,8 +89,8 @@ s, e = pcall(function()
         
         local lib = library:Load{
             Name = "dot.hub",
-            SizeX = 450,
-            SizeY = 500,
+            SizeX = 475,
+            SizeY = 525,
             Theme = "Midnight",
             Extension = "extension", -- config file extension
             Folder = "dothub" -- config folder name
@@ -205,21 +205,19 @@ s, e = pcall(function()
         
 sec1:Button{
     Name = 'Remove Map Barriers',
-    Callback = pcall(function()
+    Callback = function()
         workspace.Game.Map.InvisParts:Destroy()
-    end)
+    end
 }
-task.wait(3)
+
 sec1:Button{
     Name = "Freddy",
     Callback = function()
-        pcall(function()
         sound = Instance.new("Sound",game:GetService("Workspace"))
         sound.SoundId = "rbxassetid://1847795501"
         sound.PlayOnRemove = true
         sound:Destroy()
-        end)
-    end
+        end
 }
 end)
 if not s then
