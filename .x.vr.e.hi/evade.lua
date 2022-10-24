@@ -1,4 +1,8 @@
 s, e = pcall(function()
+    if workspace.Game.Effects:FindFirstChild("Tickets") then
+        local tickets = workspace.Game.Effects.Tickets
+       ticketevent = true
+    end
     local notifs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
     function makeNotification(type,head,body)
         notifs.new(type, head, body,true,5)
@@ -16,6 +20,7 @@ s, e = pcall(function()
         if rconsoleprint then
           rconsoleprint(changelog)
         end
+        makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             UIS = game:GetService("UserInputService")
             
@@ -170,6 +175,32 @@ s, e = pcall(function()
                 bb()
             end
         }
+
+        if ticketevent then
+           sec1:Toggle{
+            Name = 'Ticket Farm',
+            Callback = function(TF)
+                getgenv().tf = TF
+                if tf then
+                   part = Instance.new("Part",workspace)
+                   part.Anchored = true
+                   part.CFrame = CFrame.new(100,496,100)
+                end
+                while task.wait(0.5) and getgenv().tf do
+                    if not tf then break end
+                    local char = game.Players.LocalPlayer.Character or gaem.Players.LocalPlayer.CharacterAdded:Wait()
+                    local tickets = workspace.Game.Effects.Tickets
+                    local hrp = char:WaitForChild("HumanoidRootPart")
+                    hrp.CFrame = CFrame.new(100,500,100)
+                    for i,v in next, tickets:GetDescendants() do
+                       if v.IsA(v,"BasePart") and v.Name == 'HumanoidRootPart' then
+                          hrp.CFrame = CFrame.new(v.Position)
+                       end
+                    end
+                end
+            end
+           }
+        end
         
         sec1:Seperator("Buttons")
         
