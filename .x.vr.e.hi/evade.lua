@@ -1,4 +1,5 @@
 s, e = pcall(function()
+    changelog = game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/.x.vr.e.hi/misc/clogevade.lua")
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
    repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
    repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
@@ -12,7 +13,10 @@ s, e = pcall(function()
 
         function makeNotification(type,head,body)
             notifs.new(type, head, body,true,5)
-        end 
+        end
+        if rconsoleprint then
+          rconsoleprint(changelog)
+        end
         makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
@@ -41,12 +45,12 @@ s, e = pcall(function()
         function bb()
             while getgenv().breakbots do
                 n = math.random(1,10000000)
-                z = math.random(50,70)
+                z = math.random(50,8000)
                 x = math.random(1,10000000)
                 if not getgenv().breakbots then break end
                 if game:GetService("Workspace").Game.Map.Parts:FindFirstChild("KillBricks") then game:GetService("Workspace").Game.Map.Parts.KillBricks:Destroy() end
                 task.wait()
-                game.Workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):WaitForChild("HumanoidRootPart").CFrame = CFrame.new(x,n,z)
+                game.Workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0,z,0)
             end
         end
         
@@ -60,14 +64,12 @@ s, e = pcall(function()
         end)
         
         function annoydown()
+        if annoydowned then
+        makeNotification("warning",'dot.hub | ywserasdfas;fls', 'this will most likely break without Auto Respawn')
+        end
         while task.wait() do
             if not getgenv().annoydowned then break end
             pcall(function()
-                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.StatChanges.Speed:FindFirstChild("Downed")  then
-                game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-                return
-                end
                 game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(250,250,250)
             for i,v in next, game:GetService("Workspace").Game.Players:GetDescendants() do
                 if v.IsA(v,"NumberValue") and v.Name == "Downed" and not v.Parent.Parent.Parent:FindFirstChild("CarriedBy") and game.Players[v.Parent.Parent.Parent.Name].Settings.CanBeCarried.Value == true then
@@ -77,10 +79,10 @@ s, e = pcall(function()
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(hold.HumanoidRootPart.Position)
                     task.wait(0.4)
                     game:GetService("ReplicatedStorage").Events.Revive.CarryPlayer:FireServer(holder)
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,-500,0)
-                    task.wait(0.2)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,3000,0)
+                    task.wait(0.3)
                     game:GetService("ReplicatedStorage").Events.Revive.CarryPlayer:FireServer(holder,true)
-                    task.wait(.1)
+                    task.wait(1)
             end
             end
             end)
@@ -160,6 +162,11 @@ s, e = pcall(function()
             Callback = function(c)
                getgenv().cframespeed = c
                f()
+               game.Players.LocalPlayer.CharacterAdded:Connect(function()
+                   if cframespeed then
+                      f()
+                   end
+               end)
             end
         }
         
@@ -206,7 +213,23 @@ s, e = pcall(function()
 sec1:Button{
     Name = 'Remove Map Barriers',
     Callback = function()
+        if workspace.Game.Map:FindFirstChild("InvisParts") then
         workspace.Game.Map.InvisParts:Destroy()
+        end
+    end
+}
+
+sec1:Button{
+    Name = 'Teleport to objective',
+    Callback = function()
+       hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+       if workspace.Game.Map.Parts:FindFirstChild("Objectives") then
+       for i,v in next, workspace.Game.Map.Parts.Objectives:GetChildren() do
+          if v.IsA(v,"Model") then
+             hrp.CFrame = CFrame.new(v:FindFirstChildWhichIsA("BasePart").Position)
+          end
+        end
+       end
     end
 }
 
@@ -219,8 +242,9 @@ sec1:Button{
         sound:Destroy()
         end
 }
+
 end)
 if not s then
     vcb = {"Error appeared in the script","A Wild Error appeared","Error joined. Stay awhile and listen.",'Welcome, Error. We hope you brought pizza.','Error just arrived. Seems OP - please nerf.','Error has spawned in the script','Error comes in. Leave your weapons by the door.','Error joined. You must construct additional pylons.','Error just showed up. Hold my beer.','Error hopped into the script. Kangaroo!!','Error joined your party.'}
-    makeNotification("error","dot.hub | Error Handler",vcb[math.random(1,#vcb)])
+    makeNotification("error","dot.hub | Error Handler",e)
 end
