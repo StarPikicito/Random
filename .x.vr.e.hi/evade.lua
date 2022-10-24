@@ -162,6 +162,8 @@ s, e = pcall(function()
             Callback = function(c)
                getgenv().cframespeed = c
                f()
+               if getgenv().charresp then return end
+               getgenv().charresp = true
                game.Players.LocalPlayer.CharacterAdded:Connect(function()
                    if cframespeed then
                       f()
