@@ -18,13 +18,13 @@ s, e = pcall(function()
         end
         makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
-            repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
-            repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
-            You = game.Players.LocalPlayer.Character
             UIS = game:GetService("UserInputService")
             
             while getgenv().cframespeed do
                 if getgenv().cframespeed ~= getgenv().cframespeed then break end
+                repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
+                repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
+                You = game.Players.LocalPlayer.Character
                if UIS:IsKeyDown(Enum.KeyCode.W) then
                    You.HumanoidRootPart.CFrame = You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(0,0,-getgenv().cfspeed)
                end;
@@ -160,14 +160,7 @@ s, e = pcall(function()
             Name = "Walkspeed Toggle",
             Callback = function(c)
                getgenv().cframespeed = c
-               f()
-               if getgenv().charresp then return end
-               getgenv().charresp = true
-               game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                   if cframespeed then
-                      f()
-                   end
-               end)
+               f()     
             end
         }
         
