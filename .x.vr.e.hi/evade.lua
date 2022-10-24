@@ -16,7 +16,6 @@ s, e = pcall(function()
         if rconsoleprint then
           rconsoleprint(changelog)
         end
-        makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             UIS = game:GetService("UserInputService")
             
