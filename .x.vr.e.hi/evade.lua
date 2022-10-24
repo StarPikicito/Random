@@ -1,19 +1,18 @@
 s, e = pcall(function()
-    changelog = game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/.x.vr.e.hi/misc/clogevade.lua")
+    local notifs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+    function makeNotification(type,head,body)
+        notifs.new(type, head, body,true,5)
+    end
+    changelog = game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/main/.x.vr.e.hi/misc/clogevade.lua")
     game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
    repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
    repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
-        local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()
-        local notifs = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+        local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()        
         local watermark = library:Watermark("dot.hub | Evade")
         getgenv().cframespeed = false
         getgenv().cfspeed = 0.1
         getgenv().breakbots = false
         getgenv().flly = false
-
-        function makeNotification(type,head,body)
-            notifs.new(type, head, body,true,5)
-        end
         if rconsoleprint then
           rconsoleprint(changelog)
         end
