@@ -21,10 +21,10 @@ s, e = pcall(function()
             UIS = game:GetService("UserInputService")
             
             while getgenv().cframespeed do
-                if getgenv().cframespeed ~= getgenv().cframespeed then break end
-                repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
-                repeat task.wait() until workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name):FindFirstChild("HumanoidRootPart")
+                if getgenv().cfspeed ~= getgenv().cfspeed then break end
+                repeat task.wait() until game.Players.LocalPlayer.Character
                 You = game.Players.LocalPlayer.Character
+                You:WaitForChild("HumanoidRootPart")
                if UIS:IsKeyDown(Enum.KeyCode.W) then
                    You.HumanoidRootPart.CFrame = You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(0,0,-getgenv().cfspeed)
                end;
@@ -196,7 +196,7 @@ s, e = pcall(function()
         sec2:Slider{
             Text = "Walkspeed Boost: [value]",
             Min = 0.1,
-            Max = 0.5,
+            Max = 2,
             Float = 0.1,
             Flag = "walkspeed",
             Callback = function(speed)
