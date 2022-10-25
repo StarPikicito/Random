@@ -1,4 +1,3 @@
-
     if workspace.Game.Effects:FindFirstChild("Tickets") then
         local tickets = workspace.Game.Effects.Tickets
        ticketevent = true
@@ -21,7 +20,6 @@
         if rconsoleprint then
           rconsoleprint(changelog)
         end
-        makeNotification("warning","dot.hub | Loading",'made this so no error')
         function f(arg,v,value,stopped,x,walkspeed,checkondie,notps,xv,plrcount,looped,cframe)
             UIS = game:GetService("UserInputService")
             
@@ -182,6 +180,7 @@
             Callback = function(TF)
                 getgenv().tf = TF
                 if tf then
+                   makeNotification("warning",'dot.hub | Farm','Please click on "Anti Down" in the GUI to avoid breaking')
                    part = Instance.new("Part",workspace)
                    part.Anchored = true
                    part.CFrame = CFrame.new(100,496,100)
@@ -190,7 +189,8 @@
                     if not tf then break end
                     local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
                     local tickets = workspace.Game.Effects.Tickets
-                    local hrp = char:WaitForChild("HumanoidRootPart")
+                    local hrp = char:WaitForChild("HumanoidRootPart",3)
+                    if hrp == nil then return end
                     hrp.CFrame = CFrame.new(100,500,100)
                     for i,v in next, tickets:GetDescendants() do
                        if v.IsA(v,"BasePart") and v.Name == 'HumanoidRootPart' then
