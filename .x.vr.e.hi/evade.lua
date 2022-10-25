@@ -1,4 +1,15 @@
-s, e = pcall(function()
+local bots = {}
+   for i,v in next, workspace.Game.Players:GetChildren() do
+        if v.IsA(v,'Model') and not v:FindFirstChild("Movement") then
+           table.insert(bots,v)
+        end
+     end
+     workspace.Game.Players.ChildAdded:Connect(function(v)
+      task.wait(1)
+      if v.IsA(v,'Model') and not v:FindFirstChild("Movement") then
+          table.insert(bots,v)
+       end
+     end)
     if workspace.Game.Effects:FindFirstChild("Tickets") then
         local tickets = workspace.Game.Effects.Tickets
        ticketevent = true
@@ -17,6 +28,7 @@ s, e = pcall(function()
         getgenv().cfspeed = 0.1
         getgenv().breakbots = false
         getgenv().flly = false
+        getgenv().besp = false
         if rconsoleprint then
           rconsoleprint(changelog)
         end
@@ -56,15 +68,6 @@ s, e = pcall(function()
                 game.Workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0,z,0)
             end
         end
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Changed:Connect(function(prop)
-            task.wait()
-            if getgenv().aresp then
-            if game.Players.LocalPlayer.Character:WaitForChild("StatChanges"):WaitForChild("Speed"):FindFirstChild("Downed") then
-            game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-            end
-            end
-        end)
         
         function annoydown()
         if annoydowned then
@@ -133,6 +136,14 @@ s, e = pcall(function()
             Default = false,
             Callback  = function(ares)
                 getgenv().aresp = ares
+                while task.wait(1) and aresp do
+                    if not getgenv().aresp then break end
+                    local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+                    local stats = char:WaitForChild("StatChanges") 
+                    if stats:FindFirstChild("Speed") and stats:FindFirstChild("Speed"):FindFirstChild("Downed") then
+                        game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+                    end
+                end
             end
         }
         
@@ -205,7 +216,7 @@ s, e = pcall(function()
         sec1:Seperator("Buttons")
         
         sec1:Button{
-            Name = "Anti Down [GodMode]",
+            Name = "Anti Down",
             Callback = function()
                 pcall(function()
                     for i,v in next, game:GetDescendants() do
@@ -264,11 +275,5 @@ sec1:Button{
         sound.SoundId = "rbxassetid://1847795501"
         sound.PlayOnRemove = true
         sound:Destroy()
-        end
+    end
 }
-
-end)
-if not s then
-    vcb = {"Error appeared in the script","A Wild Error appeared","Error joined. Stay awhile and listen.",'Welcome, Error. We hope you brought pizza.','Error just arrived. Seems OP - please nerf.','Error has spawned in the script','Error comes in. Leave your weapons by the door.','Error joined. You must construct additional pylons.','Error just showed up. Hold my beer.','Error hopped into the script. Kangaroo!!','Error joined your party.'}
-    makeNotification("error","dot.hub | Error Handler",e)
-end
