@@ -70,10 +70,11 @@ if workspace.Game.Effects:FindFirstChild("Tickets") then
                     local hold = workspace.Game.Players[holder]
                     scrip = require(game:GetService("ReplicatedStorage").ModuleStorage.Interact.Interactions.Revive.Revive)
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(hold.HumanoidRootPart.Position)
-                    task.wait(0.4)
-                    game:GetService("ReplicatedStorage").Events.Revive.CarryPlayer:FireServer(holder)
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,3000,0)
                     task.wait(0.3)
+                    game:GetService("ReplicatedStorage").Events.Revive.CarryPlayer:FireServer(holder)
+                    task.wait(0.3)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,3000,0)
+                    task.wait(0.2)
                     game:GetService("ReplicatedStorage").Events.Revive.CarryPlayer:FireServer(holder,true)
                     task.wait(1)
             end
