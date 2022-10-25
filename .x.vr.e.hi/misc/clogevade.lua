@@ -1,4 +1,10 @@
-[Evade] [10/24/2022]
+[Evade]
+
+[10/25/2022]
+
+[~] Remade Auto Respawn to avoid breaking
+
+[10/24/2022]
 
 [+] Teleport to objective
 [+] Ticket farm
