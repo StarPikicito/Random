@@ -2,6 +2,7 @@
 
 [10/25/2022]
 
+[~] Fixed Annoy Downed. :/
 [~] Remade Auto Respawn to avoid breaking
 
 [10/24/2022]
