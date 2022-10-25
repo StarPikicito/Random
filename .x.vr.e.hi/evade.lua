@@ -1,4 +1,4 @@
-    if workspace.Game.Effects:FindFirstChild("Tickets") then
+if workspace.Game.Effects:FindFirstChild("Tickets") then
         local tickets = workspace.Game.Effects.Tickets
        ticketevent = true
     end
@@ -126,7 +126,8 @@
                 while task.wait(1) and aresp do
                     if not getgenv().aresp then break end
                     local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-                    local stats = char:WaitForChild("StatChanges") 
+                    local stats = char:WaitForChild("StatChanges",3)
+                    if stats == nil then return end 
                     if stats:FindFirstChild("Speed") and stats:FindFirstChild("Speed"):FindFirstChild("Downed") then
                         game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
                     end
@@ -205,7 +206,7 @@
         sec1:Seperator("Buttons")
         
         sec1:Button{
-            Name = "Anti Down",
+            Name = "Anti Down [GodMode]",
             Callback = function()
                 pcall(function()
                     for i,v in next, game:GetDescendants() do
