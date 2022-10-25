@@ -181,7 +181,7 @@ if workspace.Game.Effects:FindFirstChild("Tickets") then
             Callback = function(TF)
                 getgenv().tf = TF
                 if tf then
-                   makeNotification("warning",'dot.hub | Farm','Please click on "Anti Down" in the GUI to avoid breaking')
+                   makeNotification("warning",'dot.hub | Farm','Please click on "Auto Respawn" in the GUI to avoid breaking')
                    part = Instance.new("Part",workspace)
                    part.Anchored = true
                    part.CFrame = CFrame.new(100,496,100)
