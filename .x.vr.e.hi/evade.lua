@@ -188,7 +188,7 @@ s, e = pcall(function()
                 end
                 while task.wait(0.5) and getgenv().tf do
                     if not tf then break end
-                    local char = game.Players.LocalPlayer.Character or gaem.Players.LocalPlayer.CharacterAdded:Wait()
+                    local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
                     local tickets = workspace.Game.Effects.Tickets
                     local hrp = char:WaitForChild("HumanoidRootPart")
                     hrp.CFrame = CFrame.new(100,500,100)
