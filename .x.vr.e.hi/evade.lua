@@ -1,15 +1,4 @@
-local bots = {}
-   for i,v in next, workspace.Game.Players:GetChildren() do
-        if v.IsA(v,'Model') and not v:FindFirstChild("Movement") then
-           table.insert(bots,v)
-        end
-     end
-     workspace.Game.Players.ChildAdded:Connect(function(v)
-      task.wait(1)
-      if v.IsA(v,'Model') and not v:FindFirstChild("Movement") then
-          table.insert(bots,v)
-       end
-     end)
+
     if workspace.Game.Effects:FindFirstChild("Tickets") then
         local tickets = workspace.Game.Effects.Tickets
        ticketevent = true
