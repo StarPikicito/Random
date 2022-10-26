@@ -1,5 +1,10 @@
 [Evade]
 
+[10/26/2022]
+
+[!] New UI
+[+] AutoBuy event items
+
 [10/25/2022]
 
 [~] Fixed Annoy Downed. :/
