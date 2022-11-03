@@ -1,4 +1,6 @@
 repeat task.wait() until game:IsLoaded()
+reportedfolder = Instance.new('Folder',game.CoreGui)
+reportedfolder.Name = 'reportedPeople'
 
 words = {
     ['gay'] = 'Bullying',
@@ -29,6 +31,7 @@ words = {
     ['trash'] = 'Bullying',
     ['bozo'] = 'Bullying',
     ['kys'] = 'Bullying',
+    ['die'] = 'Bullying',
     ['killyou'] = 'Bullying',
     ['suck'] = 'Bullying',
     ['loser'] = 'Bullying',
@@ -39,7 +42,6 @@ words = {
     ['cry'] = 'Bullying',
     ['ez l'] = 'Bullying',
     ['l ez'] = 'Bullying',
-    ['trans'] = 'Bullying',
     ['negro'] = 'Bullying',
     ['nivver'] = 'Bullying',
     ['negar'] = 'Bullying',
@@ -69,7 +71,7 @@ end
 if not autoreportcfg then
 getgenv().autoreportcfg = {
     Webhook = '', 
-    Blatant = false,
+    Blatant = true,
     autoMessage = {
        enabled = true,
        Message = 'so sad you got autoreported :(',
@@ -97,11 +99,11 @@ end
 
 function handler(msg,speaker)
    for i,v in next, words do
-      if string.match(string.lower(msg),i) then
-        if autoreportcfg.Blatant and autoreportcfg.Blatant == true then
-            for i = 0,125 do
+      if string.match(string.lower(msg),i) and not folder:FindFirstChild(speaker) then
+        if (autoreportcfg.Blatant and autoreportcfg.Blatant == true) then
+            for i = 0,9 do
                 players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
-                task.wait(0.01)
+                task.wait(0.2)
             end
         else
          players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
@@ -164,6 +166,8 @@ function handler(msg,speaker)
     if DCSCE:FindFirstChild('SayMessageRequest') and autoreportcfg.autoMessage.enabled == true then
        DCSCE.SayMessageRequest:FireServer('/w ' .. speaker .. ' ' .. autoreportcfg.autoMessage.Message,'All')
     end
+    erwt = Instance.new('StringValue',folder)
+    erwt.Name = speaker
       end
    end
 end
