@@ -30,6 +30,7 @@ words = {
     ['ugly'] = 'Bullying',
     ['child'] = 'Bullying',
     ['trash'] = 'Bullying',
+    ['gender'] = 'Bullying',
     ['bozo'] = 'Bullying',
     ['kys'] = 'Bullying',
     ['die'] = 'Bullying',
@@ -101,7 +102,7 @@ end
 
 function handler(msg,speaker)
    for i,v in next, words do
-      if string.match(string.lower(msg),i) and not folder:FindFirstChild(speaker) then
+      if string.match(string.lower(msg),i) and not reportedfolder:FindFirstChild(speaker) then
         if (autoreportcfg.Blatant and autoreportcfg.Blatant == true) then
             for i = 0,9 do
                 players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
@@ -168,7 +169,7 @@ function handler(msg,speaker)
     if DCSCE:FindFirstChild('SayMessageRequest') and autoreportcfg.autoMessage.enabled == true then
        DCSCE.SayMessageRequest:FireServer('/w ' .. speaker .. ' ' .. autoreportcfg.autoMessage.Message,'All')
     end
-    erwt = Instance.new('StringValue',folder)
+    erwt = Instance.new('StringValue',reportedfolder)
     erwt.Name = speaker
       end
    end
