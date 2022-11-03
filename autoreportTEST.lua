@@ -22,6 +22,7 @@ words = {
     ['death to'] = 'Bullying',
     ['creep'] = 'Bullying',
     ['overweight'] = 'Bullying',
+    ['trans'] = 'Bullying',
     ['cringe'] = 'Bullying',
     ['skill issue'] = 'Bullying',
     ['parent'] = 'Bullying',
@@ -41,6 +42,7 @@ words = {
     ['g@y'] = 'Bullying',
     ['cry'] = 'Bullying',
     ['ez l'] = 'Bullying',
+    ['shut'] = 'Bullying',
     ['l ez'] = 'Bullying',
     ['negro'] = 'Bullying',
     ['nivver'] = 'Bullying',
@@ -71,7 +73,7 @@ end
 if not autoreportcfg then
 getgenv().autoreportcfg = {
     Webhook = '', 
-    Blatant = true,
+    Blatant = false,
     autoMessage = {
        enabled = true,
        Message = 'so sad you got autoreported :(',
@@ -86,7 +88,7 @@ function notify(title, text)
     notifs:MakeNotification({
         Name = title,
         Content = text,
-        Time = 5
+        Time = 7
     });
 end;
 
