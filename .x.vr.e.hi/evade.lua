@@ -4,6 +4,10 @@ local notifs =
     game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true)
 )()
 local changelog = game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/main/.x.vr.e.hi/misc/clogevade.lua")
+local esp =
+    loadstring(
+    game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua")
+)()
 
 if rconsoleprint then
     rconsoleprint(changelog)
@@ -77,8 +81,8 @@ local eventTaunts = {
     "ElectrifyingGuitar",
     "BatVision",
     "BananaSuit",
-    "EyeIllusions",
-    'BroomOfDoom',
+    "EyeIllisions",
+    "BroomOfDoom",
     "BloodMoon"
 }
 
@@ -182,6 +186,49 @@ function makeNotification(type, head, body)
     notifs.new(type, head, body, true, 5)
 end
 
+function Simple_Create(base, name, trackername, studs)
+    local bb = Instance.new("BillboardGui", game.CoreGui)
+    bb.Adornee = base
+    bb.ExtentsOffset = Vector3.new(0, 1, 0)
+    bb.AlwaysOnTop = true
+    bb.Size = UDim2.new(0, 6, 0, 6)
+    bb.StudsOffset = Vector3.new(0, 1, 0)
+    bb.Name = trackername
+
+    local frame = Instance.new("Frame", bb)
+    frame.ZIndex = 10
+    frame.BackgroundTransparency = 0.3
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+
+    local txtlbl = Instance.new("TextLabel", bb)
+    txtlbl.ZIndex = 10
+    txtlbl.BackgroundTransparency = 1
+    txtlbl.Position = UDim2.new(0, 0, 0, -48)
+    txtlbl.Size = UDim2.new(1, 0, 10, 0)
+    txtlbl.Font = "ArialBold"
+    txtlbl.FontSize = "Size12"
+    txtlbl.Text = name
+    txtlbl.TextStrokeTransparency = 0.5
+    txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
+
+function ClearESP(espname)
+    for _, v in pairs(game.CoreGui:GetChildren()) do
+        if v.Name == espname and v:isA("BillboardGui") then
+            v:Destroy()
+        end
+    end
+end
+
+function nowaterdmg(t)
+   for i,v in next, t:GetChildren() do
+      if v.IsA(v,'BasePart') then
+         v.CanTouch = false
+      end
+   end
+end
+
 -- [[ MISC ]]
 
 if workspace.Game.Effects:FindFirstChild("Tickets") then
@@ -211,14 +258,14 @@ local main =
 local mesc =
     lib:CreateTab(
     {
-        Name = "Misc"
+        Name = "Visuals"
     }
 )
 
 local misc =
     mesc:CreateSection(
     {
-        Name = "Misc",
+        Name = "FLASHES",
         Side = "Left"
     }
 )
@@ -341,6 +388,19 @@ player:AddButton(
     }
 )
 
+player:AddButton(
+    {
+     Name = "No Water Damage",
+     Callback = function()
+        if getgenv().nodmg then return end
+        getgenv().nodmg = true
+        nowaterdmg(game.Players.LocalPlayer.Character)
+        game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+           nowaterdmg(char)
+        end)
+     end
+    }
+)
 settings:AddSlider(
     {
         Name = "Walkspeed Boost",
@@ -401,12 +461,18 @@ map:AddButton(
     }
 )
 
-map:AddButton({
-   Name = 'Round end time',
-   Callback = function()
-      makeNotification('Info','dot.hub | Map',game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
-   end
-})
+map:AddButton(
+    {
+        Name = "Round end time",
+        Callback = function()
+            makeNotification(
+                "Info",
+                "dot.hub | Map",
+                game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text
+            )
+        end
+    }
+)
 
 if ticketevent then
     farm:AddToggle(
@@ -466,15 +532,52 @@ troll:AddToggle(
     }
 )
 
-misc:AddButton(
+misc:AddToggle(
     {
-        Name = "Freddy",
-        Callback = function()
-            sound = Instance.new("Sound", game:GetService("Workspace"))
-            sound.SoundId = "rbxassetid://1847795501"
-            sound.Volume = 5
-            sound.PlayOnRemove = true
-            sound:Destroy()
+        Name = "Bot ESP",
+        Callback = function(besp)
+            getgenv().botesp = besp
+            task.spawn(
+                function()
+                    while task.wait() do
+                        ClearESP('AI_Tracker')
+                        if not getgenv().botesp then
+                            break
+                        end
+                        local GamePlayers = workspace.Game.Players
+                        for i, v in pairs(GamePlayers:GetChildren()) do
+                            if not v:FindFirstChild('Movement') then
+                                Simple_Create(v.HumanoidRootPart, v.Name, "AI_Tracker")
+                            end
+                        end
+                    end
+                end
+            )
+        end
+    }
+)
+
+misc:AddToggle(
+    {
+        Name = "Downed ESP",
+        Callback = function(desp)
+            getgenv().downesp = desp
+            task.spawn(
+                function()
+                    while task.wait() do
+                        ClearESP('Downed_ESP')
+                        if not getgenv().downesp then
+                            break
+                        end
+                        local GamePlayers = workspace:WaitForChild("Game", 1337).Players
+                        for i, v in pairs(GamePlayers:GetChildren()) do
+                            if v:GetAttribute('Downed') then
+                                Simple_Create(v.HumanoidRootPart, 'DOWNED PLR: ' .. v.Name, "Downed_ESP")
+                            end
+                        end
+                    end
+                end
+            )
         end
     }
 )
