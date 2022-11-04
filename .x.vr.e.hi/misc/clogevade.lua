@@ -1,5 +1,8 @@
 [Evade]
 
+[11/5/2022]
+[+] Fast Revive
+
 [11/4/2022]
 gotcha bugxie!
 [+] Added ESP
@@ -18,12 +21,3 @@ gotcha bugxie!
 
 [~] Fixed Annoy Downed. :/
 [~] Remade Auto Respawn to avoid breaking
-
-[10/24/2022]
-
-[+] Teleport to objective
-[+] Ticket farm
-
-[~] Tweaked Annoy Downed
-[~] Fixed stopping walkspeed boost on dying, max boost in 2 now instead of 0.5
-[~] Tweaked Autofarm Wins
