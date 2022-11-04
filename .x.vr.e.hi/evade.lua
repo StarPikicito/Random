@@ -229,6 +229,13 @@ function nowaterdmg(t)
    end
 end
 
+game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+    if flly then
+       repeat task.wait() until char:FindFirstChild('HumanoidRootPart')
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/main/bypassedfly.lua"))() 
+    end
+end)
+
 -- [[ MISC ]]
 
 if workspace.Game.Effects:FindFirstChild("Tickets") then
