@@ -559,12 +559,14 @@ misc:AddToggle(
                         if not getgenv().botesp then
                             break
                         end
+                        pcall(function()
                         local GamePlayers = workspace.Game.Players
                         for i, v in pairs(GamePlayers:GetChildren()) do
                             if not game.Players:FindFirstChild(v.Name) then
                                 Simple_Create(v.HumanoidRootPart, v.Name, "AI_Tracker")
                             end
                         end
+                    end)
                     end
                 end
             )
@@ -584,12 +586,14 @@ misc:AddToggle(
                         if not getgenv().downesp then
                             break
                         end
+                        pcall(function()
                         local GamePlayers = workspace:WaitForChild("Game", 1337).Players
                         for i, v in pairs(GamePlayers:GetChildren()) do
                             if v:GetAttribute('Downed') then
                                 Simple_Create(v.HumanoidRootPart, 'DOWNED PLR: ' .. v.Name, "Downed_ESP")
                             end
                         end
+                    end)
                     end
                 end
             )
