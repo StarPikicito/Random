@@ -81,7 +81,7 @@ local eventTaunts = {
     "ElectrifyingGuitar",
     "BatVision",
     "BananaSuit",
-    "EyeIllisions",
+    "EyeIllusions",
     "BroomOfDoom",
     "BloodMoon"
 }
