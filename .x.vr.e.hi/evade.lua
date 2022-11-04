@@ -363,6 +363,20 @@ player:AddToggle(
     }
 )
 
+player:AddToggle(
+    {
+        Name = 'Fast Revive',
+        Callback = function(fastrev)
+           getgenv().far = fastrev
+           if getgenv().far then
+              workspace.Game.Settings:SetAttribute("ReviveTime",2.2)
+           else
+              workspace.Game.Settings:SetAttribute('ReviveTime',3)
+           end
+        end
+    }
+)
+
 player:AddButton(
     {
         Name = "Anti Down [God Mode]",
@@ -401,6 +415,7 @@ player:AddButton(
      end
     }
 )
+
 settings:AddSlider(
     {
         Name = "Walkspeed Boost",
@@ -546,7 +561,7 @@ misc:AddToggle(
                         end
                         local GamePlayers = workspace.Game.Players
                         for i, v in pairs(GamePlayers:GetChildren()) do
-                            if not v:FindFirstChild('Movement') then
+                            if not game.Players:FindFirstChild(v.Name) then
                                 Simple_Create(v.HumanoidRootPart, v.Name, "AI_Tracker")
                             end
                         end
