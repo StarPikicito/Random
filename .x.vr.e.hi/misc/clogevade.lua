@@ -1,5 +1,10 @@
 [Evade]
 
+[11/4/2022]
+gotcha bugxie!
+[+] Added ESP
+[+] Added No Water Damage
+
 [10/27/2022]
 
 [+] Round End Timer
