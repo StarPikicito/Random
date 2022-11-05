@@ -105,22 +105,23 @@ function f()
             task.wait()
         until game.Players.LocalPlayer.Character
         You = game.Players.LocalPlayer.Character
-        You:WaitForChild("HumanoidRootPart")
+        hrp = You:WaitForChild("HumanoidRootPart",3)
+        if not hrp then return end
         if UIS:IsKeyDown(Enum.KeyCode.W) then
-            You.HumanoidRootPart.CFrame =
-                You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(0, 0, -getgenv().cfspeed)
+            hrp.CFrame =
+                hrp.CFrame * CFrame.new(0, 0, -getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.A) then
-            You.HumanoidRootPart.CFrame =
-                You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-getgenv().cfspeed, 0, 0)
+            hrp.CFrame =
+            hrp.CFrame * CFrame.new(-getgenv().cfspeed, 0, 0)
         end
         if UIS:IsKeyDown(Enum.KeyCode.S) then
-            You.HumanoidRootPart.CFrame =
-                You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(0, 0, getgenv().cfspeed)
+            hrp.CFrame =
+                hrp.CFrame * CFrame.new(0, 0, getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.D) then
-            You.HumanoidRootPart.CFrame =
-                You:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(getgenv().cfspeed, 0, 0)
+            hrp.CFrame =
+                hrp.CFrame * CFrame.new(getgenv().cfspeed, 0, 0)
         end
         task.wait()
     end
@@ -232,6 +233,7 @@ end
 game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
     if flly then
        repeat task.wait() until char:FindFirstChild('HumanoidRootPart')
+       task.wait(3)
        loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/random/main/bypassedfly.lua"))() 
     end
 end)
