@@ -390,6 +390,10 @@ player:AddButton(
     {
         Name = "Anti Down [God Mode]",
         Callback = function()
+            if getgenv().gm then 
+              makeNotification('Info','dot.hub | GodMode','you are already in god mode silly')    
+            return end
+            getgenv().gm = true
             pcall(
                 function()
                     for i, v in next, workspace.Game.Players:GetDescendants() do
