@@ -1,5 +1,10 @@
 [Evade]
 
+[11/8/2022]
+[+] Teleport to downed
+
+[~] Made walkspeed boost smoother. I recommend sticking to 1 speed instead of 2
+
 [11/5/2022]
 [+] Fast Revive
 
@@ -11,13 +16,3 @@ gotcha bugxie!
 [10/27/2022]
 
 [+] Round End Timer
-
-[10/26/2022]
-
-[!] New UI
-[+] AutoBuy event items
-
-[10/25/2022]
-
-[~] Fixed Annoy Downed. :/
-[~] Remade Auto Respawn to avoid breaking
