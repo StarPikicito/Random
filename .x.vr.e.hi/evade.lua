@@ -97,37 +97,33 @@ getgenv().autobuy = false
 function f()
     UIS = game:GetService("UserInputService")
 
-    while getgenv().cframespeed do
+    while getgenv().cframespeed and task.wait() do
         if getgenv().cfspeed ~= getgenv().cfspeed then
             break
         end
         repeat
             task.wait()
         until game.Players.LocalPlayer.Character or workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
-        You = game.Players.LocalPlayer.Character
-        hrp = You:WaitForChild("HumanoidRootPart",3)
-        if not hrp then return end
+        You = game.Players.LocalPlayer.Character or workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
+        hrp = You:WaitForChild("HumanoidRootPart",0.1)
+        if not hrp then repeat task.wait() until You:FindFirstChild('HumanoidRootPart') end
+        hrp = You.HumanoidRootPart
         if UIS:IsKeyDown(Enum.KeyCode.W) then
-            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(0, 0, -getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.A) then
-            if not hrp then return end
             hrp.CFrame =
             hrp.CFrame * CFrame.new(-getgenv().cfspeed, 0, 0)
         end
         if UIS:IsKeyDown(Enum.KeyCode.S) then
-            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(0, 0, getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.D) then
-            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(getgenv().cfspeed, 0, 0)
         end
-        task.wait()
     end
 end
 
