@@ -103,23 +103,27 @@ function f()
         end
         repeat
             task.wait()
-        until game.Players.LocalPlayer.Character
+        until game.Players.LocalPlayer.Character or workspace.Game.Players:FindFirstChild(game.Players.LocalPlayer.Name)
         You = game.Players.LocalPlayer.Character
         hrp = You:WaitForChild("HumanoidRootPart",3)
         if not hrp then return end
         if UIS:IsKeyDown(Enum.KeyCode.W) then
+            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(0, 0, -getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.A) then
+            if not hrp then return end
             hrp.CFrame =
             hrp.CFrame * CFrame.new(-getgenv().cfspeed, 0, 0)
         end
         if UIS:IsKeyDown(Enum.KeyCode.S) then
+            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(0, 0, getgenv().cfspeed)
         end
         if UIS:IsKeyDown(Enum.KeyCode.D) then
+            if not hrp then return end
             hrp.CFrame =
                 hrp.CFrame * CFrame.new(getgenv().cfspeed, 0, 0)
         end
@@ -465,9 +469,7 @@ map:AddButton(
     {
         Name = "Remove Barriers",
         Callback = function()
-            if workspace.Game.Map:FindFirstChild("InvisParts") then
-                workspace.Game.Map.InvisParts:Destroy()
-            end
+            workspace.Game.Map.InvisParts:ClearAllChildren()
         end
     }
 )
@@ -490,12 +492,27 @@ map:AddButton(
 
 map:AddButton(
     {
+      Name = "Teleport to downed",
+      Callback = function()
+         for i,v in next, workspace.Game.Players:GetChildren() do
+            if v:GetAttribute('Downed') then
+                pcall(function()
+               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.HumanoidRootPart.Position)
+                end)
+            end
+         end
+      end
+    }
+)
+
+map:AddButton(
+    {
         Name = "Round end time",
         Callback = function()
             makeNotification(
                 "Info",
                 "dot.hub | Map",
-                game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text
+                'Round will end in ' .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text
             )
         end
     }
