@@ -250,9 +250,9 @@ end
 local lib =
     library:CreateWindow(
     {
-        Name = "dot.hub | Evade | New UI 🎉",
+        Name = "dot.hub | Evade",
         Themeable = {
-            Info = "new ui ok"
+            Info = "lol"
         }
     }
 )
@@ -437,6 +437,7 @@ settings:AddSlider(
     }
 )
 
+if ticketevent then
 settings:AddToggle(
     {
         Name = "AutoBuy event items",
@@ -457,6 +458,7 @@ settings:AddToggle(
         end
     }
 )
+end
 
 map:AddButton(
     {
