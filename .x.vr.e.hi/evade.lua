@@ -419,6 +419,7 @@ player:AddButton(
         getgenv().nodmg = true
         nowaterdmg(game.Players.LocalPlayer.Character)
         game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+           repeat task.wait() until char:FindFirstChild('HumanoidRootPart')
            nowaterdmg(char)
         end)
      end
