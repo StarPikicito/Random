@@ -1,3 +1,9 @@
+--[[
+
+FE2 script is not done yet
+
+]]
+
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 local key = -game:GetService("ReplicatedStorage").Remote.ReqPasskey:InvokeServer()
 local subs = {'You knew that 1xblindx1 was cheating?','We automatically bypass client anticheat.','This GUI was inspired by FloodGUI V3'}
