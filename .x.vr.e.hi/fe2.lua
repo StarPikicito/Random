@@ -111,7 +111,7 @@ mainTab:CreateToggle({
 function funcmuteemotes()
    task.spawn(function()
       while task.wait() and getgenv().muteemotes do
-       if getgenv().muteemotes = false then break end
+       if getgenv().muteemotes == false then break end
          for i,v in next, workspace:GetDescendants() do
             if v.IsA(v,'Sound') then
                v:Stop()
