@@ -115,7 +115,7 @@ mainTab:CreateToggle({
                xor = Instance.new('IntValue',map)
                xor.Name = 'completed'
                tp(v.CFrame,Time(v.Position))
-               task.wait(Time(v.Position))
+               task.wait(Time(v.Position) + 1)
                game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
                task.wait(3)
                repeat task.wait() until workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChild('HumanoidRootPart')
