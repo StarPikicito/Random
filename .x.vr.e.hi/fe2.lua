@@ -44,10 +44,15 @@ infoTab:CreateLabel('Functions are tweaked to Bypass The AntiCheat. You Shouldnt
 
 function getButton()
     for i,v in next, workspace.Multiplayer:WaitForChild('Map'):GetDescendants() do
-        if v.IsA(v,'TouchTransmitter') and not v.Parent:FindFirstChild('pressed') and not string.match(string.lower(v.Parent.Name),'rescue') and not string.match(string.lower(v.Parent.Name),'page') then
+        if v.IsA(v,'TouchTransmitter') and not v.Parent:FindFirstChild('pressed') and not string.match(string.lower(v.Parent.Name),'rescue') and not string.match(string.lower(v.Parent.Name),'page') and v.Parent.Position ~= Vector3.zero then
            return v.Parent
         end
      end
+end
+
+function Time(targetpos)
+   local tme = (targetpos - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
+   return tme
 end
 
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
@@ -81,19 +86,42 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().jumppower
 end)
 
+function float()
+   task.spawn(function()
+      if gettingbuttons then
+      fpart = Instance.new('Part',workspace)
+      fpart.Name = 'floatpart'
+      fpart.Anchored = true
+      while task.wait() and getgenv().gettingbuttons do
+         fpart.CFrame = CFrame.new(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position - Vector3.new(0,3,0))
+      end
+   end
+   end)
+end
+
 mainTab:CreateToggle({
-	Name = "Auto Get Buttons [✅]",
+	Name = "AutoFarm [✅]",
     CurrentValue = false,
 	Callback = function(getbtns)
-        map = workspace.Multiplayer:WaitForChild('Map')
-        for i,v in next, map:GetDescendants() do
-           if v.Name == 'ExitRegion' then
-              repeat task.wait() until not workspace.Multiplayer:FindFirstChild('Map')
-           end
-        end
 		getgenv().gettingbuttons = getbtns
+      task.spawn(function()
+         float()
+      end)
         while task.wait() and getgenv().gettingbuttons do
-        char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+         map = workspace.Multiplayer:WaitForChild('Map')
+         char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+         for i,v in next, map:GetDescendants() do
+            if v.Name == 'ExitRegion' and not map:FindFirstChild('completed') then
+               xor = Instance.new('IntValue',map)
+               xor.Name = 'completed'
+               tp(v.CFrame,Time(v.Position))
+               task.wait(Time(v.Position))
+               game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+               task.wait(3)
+               repeat task.wait() until workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChild('HumanoidRootPart')
+               game:GetService("ReplicatedStorage").Remote.AddedWaiting:FireServer(key)
+              end
+           end
         for i,v in next, char:GetDescendants() do
           if v.IsA(v,'BasePart') then v.CanCollide = false end
         end
@@ -101,10 +129,13 @@ mainTab:CreateToggle({
         hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
         button = getButton()
         if button then
+        tp(button.CFrame,Time(button.Position))
+        task.wait(Time(button.Position))
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+        task.wait(0.2)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
         psd = Instance.new('IntValue',button)
         psd.Name = 'pressed'
-        tp(button.CFrame,7.2)
-        task.wait(7.5)
         end
     end
 	end,
@@ -180,7 +211,7 @@ mainTab:CreateToggle({
 })
 
 mainTab:CreateToggle({
-   Name = 'Auto Safespot [⚠️/?]',
+   Name = 'Auto Safespot [✅]',
    CurrentValue = false,
    Callback = function(Value)
       getgenv().safespot = Value
