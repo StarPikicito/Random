@@ -8,6 +8,8 @@ local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 local key = -game:GetService("ReplicatedStorage").Remote.ReqPasskey:InvokeServer()
 local subs = {'You knew that 1xblindx1 was cheating?','We automatically bypass client anticheat.','This GUI was inspired by FloodGUI V3'}
 local ltitles = {'Drowning Crazyblox..','never enough','zxcursed'}
+local part = Instance.new('Part',workspace)
+part.Anchored = true
 
 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild('LocalScript') then
 game.Players.LocalPlayer.Character:FindFirstChild("LocalScript"):Destroy()
@@ -74,7 +76,7 @@ handler()
 
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
     handler()
-    task.wait(3)
+    task.wait(5)
     game.Players.LocalPlayer.Character:WaitForChild('Humanoid').WalkSpeed = getgenv().walkspeed
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = getgenv().jumppower
 end)
@@ -175,6 +177,20 @@ mainTab:CreateToggle({
             end
       end
    end
+})
+
+mainTab:CreateToggle({
+   Name = 'Auto Safespot [⚠️/?]',
+   CurrentValue = false,
+   Callback = function(Value)
+      getgenv().safespot = Value
+      task.spawn(function()
+          while task.wait(5) and safespot do
+            if not safespot then break end
+            game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = CFrame.new(part.Position + Vector3.new(0,5,0))
+          end
+      end)
+   end,
 })
 
 
