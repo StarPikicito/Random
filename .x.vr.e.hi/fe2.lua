@@ -115,7 +115,7 @@ mainTab:CreateToggle({
                xor = Instance.new('IntValue',map)
                xor.Name = 'completed'
                tp(v.CFrame,Time(v.Position))
-               task.wait(Time(v.Position) + 1)
+               task.wait(Time(v.Position))
                game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
                task.wait(3)
                repeat task.wait() until workspace:WaitForChild(game.Players.LocalPlayer.Name):FindFirstChild('HumanoidRootPart')
@@ -132,10 +132,8 @@ mainTab:CreateToggle({
         tp(button.CFrame,Time(button.Position))
         task.wait(Time(button.Position))
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        task.wait(0.2)
+        task.wait(0.1)
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        psd = Instance.new('IntValue',button)
-        psd.Name = 'pressed'
         end
     end
 	end,
