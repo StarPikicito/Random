@@ -44,7 +44,7 @@ infoTab:CreateLabel('Functions are tweaked to Bypass The AntiCheat. You Shouldnt
 
 function getButton()
     for i,v in next, workspace.Multiplayer:WaitForChild('Map'):GetDescendants() do
-        if v.IsA(v,'TouchTransmitter') and not v.Parent:FindFirstChild('pressed') and not string.match(string.lower(v.Parent.Name),'rescue') and not string.match(string.lower(v.Parent.Name),'page') and v.Parent.Position ~= Vector3.zero then
+        if v.IsA(v,'TouchTransmitter') and not v.Parent:FindFirstChild('pressed') and string.lower(v.Parent.Name) ~= 'contact' and not string.match(string.lower(v.Parent.Name),'page') and v.Parent.Position ~= Vector3.zero then
            return v.Parent
         end
      end
@@ -122,19 +122,18 @@ mainTab:CreateToggle({
                game:GetService("ReplicatedStorage").Remote.AddedWaiting:FireServer(key)
               end
            end
-        for i,v in next, char:GetDescendants() do
-          if v.IsA(v,'BasePart') then v.CanCollide = false end
-        end
         char:WaitForChild('HumanoidRootPart')
         hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
         button = getButton()
-        if button then
+        pcall(function()
         tp(button.CFrame,Time(button.Position))
         task.wait(Time(button.Position))
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        task.wait(0.1)
+        task.wait(0.3)
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        end
+        local pressed = Instance.new('IntValue',getButton())
+        pressed.Name = 'pressed'
+        end)
     end
 	end,
 })
