@@ -131,7 +131,7 @@ mainTab:CreateToggle({
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
         task.wait(0.3)
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        local pressed = Instance.new('IntValue',getButton())
+        local pressed = Instance.new('IntValue',button)
         pressed.Name = 'pressed'
         end)
     end
