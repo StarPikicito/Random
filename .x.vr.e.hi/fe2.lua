@@ -63,6 +63,7 @@ end
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
    if t.Name == 'Map' and t.Parent.Name == 'Multiplayer' and t.IsA(t,'Model') then
       if skipLoading then
+        task.wait(0.2)
         game:GetService("ReplicatedStorage").Remote.LoadedMap:FireServer(key)        
       end
    end
