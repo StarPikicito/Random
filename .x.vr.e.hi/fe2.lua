@@ -44,14 +44,16 @@ infoTab:CreateLabel('Functions are tweaked to Bypass The AntiCheat. You Shouldnt
 
 function getButton()
     for i,v in next, workspace.Multiplayer:WaitForChild('Map'):GetDescendants() do
-        if v.IsA(v,'TouchTransmitter') and not v.Parent:FindFirstChild('pressed') and string.lower(v.Parent.Name) ~= 'contact' and not string.match(string.lower(v.Parent.Name),'page') and v.Parent.Position ~= Vector3.zero then
+        if v.IsA(v,'TouchTransmitter') and string.lower(v.Parent.Name) ~= 'contact' and not string.match(string.lower(v.Parent.Name),'page') then
+           print(workspace.Multiplayer:WaitForChild('Map').Name .. ' button pos: ' .. tostring(v.Parent.Position))
            return v.Parent
         end
      end
 end
 
 function Time(targetpos)
-   local tme = (targetpos - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
+   --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
+     local tme = (game.Players.LocalPlayer.Character.PrimaryPart.Position - targetpos).Magnitude / 20
    return tme
 end
 
@@ -109,6 +111,7 @@ mainTab:CreateToggle({
       end)
         while task.wait() and getgenv().gettingbuttons do
          map = workspace.Multiplayer:WaitForChild('Map')
+         button = getButton()
          char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
          for i,v in next, map:GetDescendants() do
             if v.Name == 'ExitRegion' and not map:FindFirstChild('completed') then
@@ -124,15 +127,15 @@ mainTab:CreateToggle({
            end
         char:WaitForChild('HumanoidRootPart')
         hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-        button = getButton()
         pcall(function()
+        print('Estimated time: ' .. tostring(Time(button.Position)))
+        print('Teleporting!')
         tp(button.CFrame,Time(button.Position))
         task.wait(Time(button.Position))
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
         task.wait(0.3)
         game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        local pressed = Instance.new('IntValue',button)
-        pressed.Name = 'pressed'
+        button:Destroy()
         end)
     end
 	end,
