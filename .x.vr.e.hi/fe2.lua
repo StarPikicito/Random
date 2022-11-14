@@ -56,7 +56,7 @@ end
 function Time(targetpos)
    --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
 	local tme = (game.Players.LocalPlayer.Character.PrimaryPart.Position - targetpos).Magnitude / 20
-	return tme - 1
+	return tme - 0.6
 end
 
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
@@ -133,7 +133,9 @@ mainTab:CreateToggle({
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
 				task.wait(Time(button.Position))
-				task.wait(0.45)
+				hrp.Anchored = true
+				task.wait(0.1)
+				hrp.Anchored = false
             for i,v in next, char:GetChildren() do
                if v.IsA(v,'BasePart') then v.Velocity = Vector3.zero; v.RotVelocity = Vector3.zero end
             end
