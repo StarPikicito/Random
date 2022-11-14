@@ -133,9 +133,7 @@ mainTab:CreateToggle({
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
 				task.wait(Time(button.Position))
-				hrp.Anchored = true
-				task.wait(0.3)
-				hrp.Anchored = false
+				task.wait(0.45)
             for i,v in next, char:GetChildren() do
                if v.IsA(v,'BasePart') then v.Velocity = Vector3.zero; v.RotVelocity = Vector3.zero end
             end
