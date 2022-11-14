@@ -32,6 +32,8 @@ local lib = Rayfield:CreateWindow({
 getgenv().godmode = nil
 getgenv().waterwalk = nil
 getgenv().muteemotes = nil
+getgenv().skipLoading = nil
+getgenv().autoVote = nil
 getgenv().walkspeed = 20
 getgenv().jumppower = 50
 
@@ -55,10 +57,15 @@ end
 function Time(targetpos)
    --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
 	local tme = (game.Players.LocalPlayer.Character.PrimaryPart.Position - targetpos).Magnitude / 20
-	return tme - 0.5
+	return tme - 0.4
 end
 
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
+   if t.Name == 'Map' and t.Parent.Name == 'Multiplayer' and t.IsA(t,'Model') then
+      if skipLoading then
+        game:GetService("ReplicatedStorage").Remote.LoadedMap:FireServer(key)        
+      end
+   end
 	if string.match(string.lower(t.Name), 'water') and t.IsA(t, 'BasePart') and getgenv().waterwalk then
 		t.CanCollide = true
 	end
@@ -209,6 +216,30 @@ mainTab:CreateToggle({
 	Callback = function(gr)
 		getgenv().misc = gr
 		_autoget()
+	end,
+})
+
+mainTab:CreateToggle({
+	Name = 'Skip Loading [✅]',
+	CurrentValue = false,
+	Callback = function(value)
+		getgenv().skipLoading = value
+	end,
+})
+
+mainTab:CreateToggle({
+	Name = 'Auto Vote [✅]',
+	CurrentValue = false,
+	Callback = function(value)
+		getgenv().autoVote = value
+      if autoVote then
+         task.spawn(function()
+            while task.wait(4) and getgenv().autoVote do
+               if not autoVote then break end
+               game:GetService("ReplicatedStorage").Remote.UpdMapVote:FireServer(key, 8, 0)
+            end
+         end)
+      end
 	end,
 })
 
