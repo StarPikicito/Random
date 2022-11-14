@@ -129,6 +129,11 @@ mainTab:CreateToggle({
 			end
 			hrp = game.Players.LocalPlayer.Character.PrimaryPart
 			pcall(function()
+            repeat task.wait()
+               button = getButton()
+               game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
+            until button ~= nil
+            game.Players.LocalPlayer.Character.PrimaryPart.Anchored = false
 				print('Estimated time: ' .. tostring(Time(button.Position)))
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
