@@ -47,7 +47,6 @@ infoTab:CreateLabel('Functions are tweaked to Bypass The AntiCheat. You Shouldnt
 function getButton()
 	for i, v in next, workspace.Multiplayer:WaitForChild('Map'):GetDescendants() do
 		if v.IsA(v, 'TouchTransmitter') and string.lower(v.Parent.Name) ~= 'contact' and not string.match(string.lower(v.Parent.Name), 'page') then
-			print(workspace.Multiplayer:WaitForChild('Map').Name .. ' button pos: ' .. tostring(v.Parent.Position))
 			return v.Parent
 		end
 	end
@@ -64,6 +63,7 @@ workspace.Multiplayer.DescendantAdded:Connect(function(t)
 		t.CanCollide = true
 	end
 end)
+
 function tp(cframe, speed)
 	local plr = game:GetService("Players").LocalPlayer.Character
 	local tween = game:GetService("TweenService")
@@ -132,7 +132,7 @@ mainTab:CreateToggle({
             repeat task.wait()
                button = getButton()
                game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
-            until button ~= nil
+            until button ~= nil or workspace.Multiplayer.Map:FindFirstChild('ExitRegion')
             game.Players.LocalPlayer.Character.PrimaryPart.Anchored = false
 				print('Estimated time: ' .. tostring(Time(button.Position)))
 				print('Teleporting!')
