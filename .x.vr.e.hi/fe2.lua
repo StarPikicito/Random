@@ -57,7 +57,7 @@ end
 function Time(targetpos)
    --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
 	local tme = (game.Players.LocalPlayer.Character.PrimaryPart.Position - targetpos).Magnitude / 20
-	return tme - 0.4
+	return tme - 0.38
 end
 
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
@@ -287,7 +287,7 @@ lpTab:CreateSlider({
 	Name = "WalkSpeed [✅]",
 	Range = {
 		20,
-		28
+		26,
 	},
 	Increment = 1,
 	CurrentValue = 20,
@@ -301,7 +301,7 @@ lpTab:CreateSlider({
 	Name = "JumpPower [✅]",
 	Range = {
 		50,
-		80
+		75
 	},
 	Increment = 1,
 	CurrentValue = 50,
