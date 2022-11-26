@@ -674,7 +674,6 @@ if getgenv().settings.autoBeg then
 end
 local RaisedC = Players.LocalPlayer.leaderstats.Raised.value
 Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function()
-    hopSet()
     if getgenv().settings.webhookToggle and getgenv().settings.webhookBox then
         local LogService = Game:GetService("LogService")
         local logs = LogService:GetLogHistory()
@@ -686,13 +685,13 @@ Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function()
         end
     end
     RaisedC = Players.LocalPlayer.leaderstats.Raised.value
+     serverHop()
     if getgenv().settings.autoThanks then
         task.spawn(function()
             task.wait(getgenv().settings.thanksDelay)
             game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(getgenv().settings.thanksMessage[math.random(#getgenv().settings.thanksMessage)],"All")
         end)
     end
-    serverHop()
     task.wait(getgenv().settings.textUpdateDelay)
     update()
 end)
