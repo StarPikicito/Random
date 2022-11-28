@@ -74,7 +74,7 @@ function walkToPlayer(plr)
 atPlr = false
 task.wait(Time(plr.Position))
 chat:FireServer('donate please','All')
-task.wait(4)
+task.wait(6)
 walkToBooth()
 task.wait(7)
 end
