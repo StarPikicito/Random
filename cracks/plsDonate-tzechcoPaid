@@ -997,6 +997,14 @@ if getgenv().settings.autoBeg then
 end
 local RaisedC = Players.LocalPlayer.leaderstats.Raised.value
 Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function(newRaised)
+    if getgenv().settings.donationJump and RaisedC ~= nil then
+        task.spawn(function()
+        task.wait(getgenv().settings.thanksDelay + 0.5)
+        for i = 1, Players.LocalPlayer.leaderstats.Raised.value - RaisedC do
+            Players.LocalPlayer.Character.Humanoid:ChangeState('Jumping')
+            repeat task.wait() until Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Jumping
+        end
+    end)
     if getgenv().settings.webhookToggle and getgenv().settings.webhookBox then
         task.spawn(function()
             local sent = false
