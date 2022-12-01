@@ -44,7 +44,7 @@ local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or 
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local httpservice = game:GetService('HttpService')
 local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/CF-Trail/random/main/backup/UI-tzechcoFlux")()
-local win = Flux:Window("dotgg/plsdonate", "Originally by TzechCo", Color3.fromRGB(0, 128, 0), Enum.KeyCode.RightShift)
+local win = Flux:Window("dotgg/plsdonate autofarm", "Originally by TzechCo", Color3.fromRGB(0, 128, 0), Enum.KeyCode.RightShift)
 local function claimGifts()
     pcall(function()
         Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -742,8 +742,7 @@ end)
 
 webhookTab:Button("Test", "Sends a test message to your webhook to verify it is working", function()
     if getgenv().settings.webhookBox then
-        webhook("WheyX PLS DONATE AFK Script")
-	webhook("This is test")
+	webhook("The webhook is working")
     end
 end)
 
@@ -999,7 +998,7 @@ local RaisedC = Players.LocalPlayer.leaderstats.Raised.value
 Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function(newRaised)
     if getgenv().settings.donationJump and RaisedC ~= nil then
         task.spawn(function()
-	task.wait(getgenv().settings.thanksDelay + 0.5)
+        task.wait(getgenv().settings.thanksDelay + 0.5)
         for i = 1, Players.LocalPlayer.leaderstats.Raised.value - RaisedC do
             Players.LocalPlayer.Character.Humanoid:ChangeState('Jumping')
             repeat task.wait() until Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Jumping
