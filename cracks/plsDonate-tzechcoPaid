@@ -996,10 +996,10 @@ if getgenv().settings.autoBeg then
 end
 local RaisedC = Players.LocalPlayer.leaderstats.Raised.value
 Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function(newRaised)
-    if getgenv().settings.donationJump and RaisedC ~= nil then
-        task.spawn(function()
+    if getgenv().settings.donationJump then
+      task.spawn(function()
         for i = 1, Players.LocalPlayer.leaderstats.Raised.value - RaisedC do
-            Players.LocalPlayer.Character.Humanoid:ChangeState('Jumping')
+            Players.LocalPlayer.Character.Humanoid.Jump = true
             repeat task.wait() until Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Landed or Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running
         end
     end)
