@@ -1001,7 +1001,7 @@ Players.LocalPlayer.leaderstats.Raised.Changed:Connect(function(newRaised)
         task.wait(getgenv().settings.thanksDelay + 0.5)
         for i = 1, Players.LocalPlayer.leaderstats.Raised.value - RaisedC do
             Players.LocalPlayer.Character.Humanoid:ChangeState('Jumping')
-            repeat task.wait() until Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Landed
+            repeat task.wait() until Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Landed or Players.LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Running
         end
     end)
      end
