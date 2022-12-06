@@ -48,14 +48,10 @@ task.spawn(function()
     end
 end)
 
-repeat
-    task.wait()
-until tostring(game:service "Players".LocalPlayer.TeamColor) ~= "Light grey metallic"
-
 game:GetService('StarterGui'):SetCore("SendNotification", {
     Title = "Loaded!"; 
     Text = "made by dotgg"; 
-    Duration = 10; 
+    Duration = 12; 
 })
 
 game:service "Players".LocalPlayer.Character.Humanoid.Health = 0
