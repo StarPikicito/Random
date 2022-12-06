@@ -43,6 +43,7 @@ task.spawn(function()
        xprint('Reset Timer (12.5s)')
        if stop(tostring(game:service'Players'.LocalPlayer.TeamColor)) ~= nil then
        workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('Humanoid').Health = 0
+       workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('Humanoid'):ChangeState('Dead')
        end
      end)
     end
