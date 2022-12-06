@@ -38,9 +38,9 @@ function stop(s)
 end
 
 task.spawn(function()
-    while task.wait(11) do
+    while task.wait(12.5) do
      pcall(function()
-       xprint('Reset Timer (11s)')
+       xprint('Reset Timer (12.5s)')
        if stop(tostring(game:service'Players'.LocalPlayer.TeamColor)) ~= nil then
        workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('Humanoid').Health = 0
        end
