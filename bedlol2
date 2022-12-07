@@ -72,7 +72,7 @@ local function bedtp()
         task.wait()
           if v.Character and v.Character.PrimaryPart and v.TeamColor ~= game:service'Players'.LocalPlayer.TeamColor then
             xprint(v.Name .. ' < plr target')
-             while task.wait(0.1) and v.Character and v.Character.Humanoid.Health > 0 do
+             while task.wait(0.18) and v.Character and v.Character.Humanoid.Health > 0 do
                 pcall(function()
                 char:PivotTo(CFrame.new(v.Character.PrimaryPart.Position))
             end)
