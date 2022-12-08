@@ -37,17 +37,39 @@ function stop(s)
     end
 end
 
-task.spawn(function()
-    while task.wait(13.1) do
-     pcall(function()
-       xprint('Reset Timer (13.1s)')
+function getPlr()
+    nMagnitude = nil
+    r = nil
+    for i,v in next, game:service'Players':GetPlayers() do
+          if v.Character and v.Character.PrimaryPart and v.TeamColor ~= game:service'Players'.LocalPlayer.TeamColor and v.Character:FindFirstChild('Humanoid') and v.Character.Humanoid.Health > 0 and v ~= game:service'Players'.LocalPlayer then
+                magnitude = (v.Character.PrimaryPart.Position - game:service'Players'.LocalPlayer.Character.PrimaryPart.Position).magnitude
+                if nMagnitude ~= nil then
+                    if magnitude < nMagnitude then
+                       r = v
+                       nMagnitude = magnitude
+                    end
+                else
+                    nMagnitude = magnitude
+                    r = v
+             end
+          end
+       end
+       return r
+end
+
+xprint('thank you sirmeme for posting this into robloxscripts ♥')
+
+function checkNetwork()
+local network_owner = getnetworkowner or isnetworkowner or networkowner or checknetworkowner or networkcheck
+if network_owner and network_owner(game:service'Players'.LocalPlayer.Character.PrimaryPart) == true then
+else
        if stop(tostring(game:service'Players'.LocalPlayer.TeamColor)) ~= nil then
        workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('Humanoid').Health = 0
        workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('Humanoid'):ChangeState('Dead')
+       workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('HumanoidRootPart').CFrame = CFrame.new(0,-500,0)
        end
-     end)
     end
-end)
+end
 
 game:GetService('StarterGui'):SetCore("SendNotification", {
     Title = "Loaded!"; 
@@ -56,8 +78,6 @@ game:GetService('StarterGui'):SetCore("SendNotification", {
 })
 
 game:service "Players".LocalPlayer.Character.Humanoid.Health = 0
-
-xprint('thank you sirmeme for posting this into robloxscripts ♥')
 
 local function bedtp()
     task.wait(0.1)
@@ -70,16 +90,10 @@ local function bedtp()
     end
 
     if stop('trans pride!') == 1 then
-       for i,v in next, game:service'Players':GetPlayers() do
-        task.wait()
-          if v.Character and v.Character.PrimaryPart and v.TeamColor ~= game:service'Players'.LocalPlayer.TeamColor then
-            xprint(v.Name .. ' < plr target')
-             while task.wait(0.18) and v.Character and v.Character.Humanoid.Health > 0 do
-                pcall(function()
+             while task.wait(0.18) do
+                checkNetwork()
+                v = getPlr()
                 char:PivotTo(CFrame.new(v.Character.PrimaryPart.Position))
-            end)
-             end
-          end
        end
     end
 
