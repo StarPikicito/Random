@@ -57,6 +57,8 @@ game:GetService('StarterGui'):SetCore("SendNotification", {
 
 game:service "Players".LocalPlayer.Character.Humanoid.Health = 0
 
+xprint('thank you sirmeme for posting this into robloxscripts ♥')
+
 local function bedtp()
     task.wait(0.1)
     char = game:service "Players".LocalPlayer.Character
