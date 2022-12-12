@@ -6,6 +6,8 @@ pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
 end)
 
+local network_owner = getnetworkowner or isnetworkowner or networkowner or checknetworkowner or networkcheck
+
 function xprint(s)
 if rconsoleprint then
    rconsoleprint(s .. '\n')
@@ -58,7 +60,7 @@ function getPlr()
 end
 
 xprint('thank you sirmeme for posting this into robloxscripts ♥')
-
+ if network_owner then
 function checkNetwork()
 local network_owner = getnetworkowner or isnetworkowner or networkowner or checknetworkowner or networkcheck
 if network_owner and network_owner(game:service'Players'.LocalPlayer.Character.PrimaryPart) == true then
@@ -69,6 +71,13 @@ else
        workspace:WaitForChild(game:service'Players'.LocalPlayer.Name):WaitForChild('HumanoidRootPart').CFrame = CFrame.new(0,-500,0)
        end
     end
+end
+else
+task.spawn(function()
+while task.wait(15) do
+game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end
+end)
 end
 
 game:GetService('StarterGui'):SetCore("SendNotification", {
