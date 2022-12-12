@@ -78,6 +78,7 @@ while task.wait(15) do
 game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end
 end)
+function checkNetwork() end
 end
 
 game:GetService('StarterGui'):SetCore("SendNotification", {
