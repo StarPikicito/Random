@@ -60,7 +60,7 @@ function Time(targetpos)
 	return tme - 0.38
 end
 
-workspace.Multiplayer.ChildAdded:Connect(function(t)
+workspace.Multiplayer.DescendantAdded:Connect(function(t)
    task.wait()
    if t.Name == 'Map' and t.Parent.Name == 'Multiplayer' and t.IsA(t,'Model') then
       if skipLoading then
