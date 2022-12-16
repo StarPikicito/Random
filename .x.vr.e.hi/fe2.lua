@@ -319,18 +319,3 @@ miscTab:CreateToggle({
 		funcmuteemotes()
 	end,
 })
-
-miscTab:CreateToggle({
-	Name = 'Lag Server [50 coins required/noob buddie] [✅]',
-	CurrentValue = false,
-	Callback = function(lag)
-		getgenv().laggin = lag
-		if laggin then
-			for i = 1, 190, 1 do
-				game:GetService("ReplicatedStorage").Remote.ConfirmItem:FireServer(key, 40)
-			end
-		else
-			game.Players.LocalPlayer.Character.Humanoid.Health = 0
-		end
-	end,
-})
