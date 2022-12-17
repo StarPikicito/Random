@@ -108,13 +108,13 @@ function handler(msg,speaker)
       if string.match(string.lower(msg),i) and not reportedfolder:FindFirstChild(speaker) then
         if (autoreportcfg.Blatant and autoreportcfg.Blatant == true) then
             for i = 0,9 do
-                players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
+                players:ReportAbuse(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
                 task.wait(0.2)
             end
         else
-            players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
+            players:ReportAbuse(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
          task.wait(1.5)
-         players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
+         players:ReportAbuse(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
         end
          if autoreportcfg.Webhook ~= nil and autoreportcfg.Webhook ~= '' and autoreportcfg.Webhook ~= ' ' then
          local data = 
