@@ -62,6 +62,7 @@ words = {
     ['download'] = 'Offsite Links',
     ['youtube'] = 'Offsite Links',
     ['dizzy'] = 'Offsite Links',
+    ['disco'] = 'Offsite Links',
 }
 
 if not game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents') or not game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents'):FindFirstChild('OnMessageDoneFiltering') then return end
@@ -107,13 +108,13 @@ function handler(msg,speaker)
       if string.match(string.lower(msg),i) and not reportedfolder:FindFirstChild(speaker) then
         if (autoreportcfg.Blatant and autoreportcfg.Blatant == true) then
             for i = 0,9 do
-                players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
+                players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
                 task.wait(0.2)
             end
         else
-         players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
+            players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
          task.wait(1.5)
-         players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
+         players:ReportAbuseV3(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
         end
          if autoreportcfg.Webhook ~= nil and autoreportcfg.Webhook ~= '' and autoreportcfg.Webhook ~= ' ' then
          local data = 
