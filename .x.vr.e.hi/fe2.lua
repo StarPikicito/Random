@@ -23,6 +23,12 @@ game.ReplicatedStorage.Remote.ReqCharVars.OnClientInvoke = function()
 	return {}
 end
 
+game:GetService("ReplicatedStorage").Remote.FetchPos.OnClientInvoke = function()
+	warn('AntiCheat bypassed V2')
+	wait(9e9)
+	return {}
+end
+
 local lib = Rayfield:CreateWindow({
 	Name = "dot.hub | FE2",
 	LoadingTitle = ltitles[math.random(1, #ltitles)],
