@@ -76,7 +76,7 @@ end)
 function tp(cframe, speed)
 	local plr = game:GetService("Players").LocalPlayer.Character
 	local tween = game:GetService("TweenService")
-	tween:Create(plr.PrimaryPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
+	tween:Create(plr.Humanoid.PrimaryPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
 		CFrame = cframe
 	}):Play()
 end 
@@ -148,7 +148,7 @@ mainTab:CreateToggle({
 				tp(button.CFrame, Time(button.Position))
 				task.wait(Time(button.Position))
 				hrp.Anchored = true
-				task.wait(0.02)
+				task.wait(0.06)
 				hrp.Anchored = false
             for i,v in next, char:GetChildren() do
                if v.IsA(v,'BasePart') then v.Velocity = Vector3.zero; v.RotVelocity = Vector3.zero end
