@@ -76,7 +76,7 @@ end)
 function tp(cframe, speed)
 	local plr = game:GetService("Players").LocalPlayer.Character
 	local tween = game:GetService("TweenService")
-	tween:Create(plr.HumanoidRootPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
+	tween:Create(plr.PrimaryPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
 		CFrame = cframe
 	}):Play()
 end 
