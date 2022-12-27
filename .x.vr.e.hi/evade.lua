@@ -240,17 +240,12 @@ end)
 
 -- [[ MISC ]]
 
-if workspace.Game.Effects:FindFirstChild("Tickets") then
-    local tickets = workspace.Game.Effects.Tickets
-    ticketevent = true
-end
-
 -- [[ GUI ]]
 
 local lib =
     library:CreateWindow(
     {
-        Name = "dot.hub | Evade",
+        Name = "dot.hub | Evade 🎄",
         Themeable = {
             Info = "lol"
         }
@@ -442,28 +437,6 @@ settings:AddSlider(
     }
 )
 
-if ticketevent then
-settings:AddToggle(
-    {
-        Name = "AutoBuy event items",
-        Callback = function(autob)
-            getgenv().autobuy = autob
-            if getgenv().autobuy then
-                makeNotification("Info", "dot.hub | AutoBuy", "This buys event items if you got tickets.")
-            end
-            while task.wait(60) and autobuy do
-                if not getgenv().autobuy then
-                    break
-                end
-                for i, v in next, eventTaunts do
-                    task.wait()
-                    game:GetService("ReplicatedStorage").Events.UI.Purchase:InvokeServer("Event", v)
-                end
-            end
-        end
-    }
-)
-end
 
 map:AddButton(
     {
@@ -517,44 +490,6 @@ map:AddButton(
         end
     }
 )
-
-if ticketevent then
-    farm:AddToggle(
-        {
-            Name = "Ticket Farm",
-            Callback = function(TF)
-                getgenv().tf = TF
-                if tf then
-                    makeNotification(
-                        "warning",
-                        "dot.hub | Farm",
-                        'Please click on "Auto Respawn" in the GUI to avoid breaking'
-                    )
-                    part = Instance.new("Part", workspace)
-                    part.Anchored = true
-                    part.CFrame = CFrame.new(100, 496, 100)
-                end
-                while task.wait(0.5) and getgenv().tf do
-                    if not tf then
-                        break
-                    end
-                    local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-                    local tickets = workspace.Game.Effects.Tickets
-                    local hrp = char:WaitForChild("HumanoidRootPart", 3)
-                    if hrp == nil then
-                        return
-                    end
-                    hrp.CFrame = CFrame.new(100, 500, 100)
-                    for i, v in next, tickets:GetDescendants() do
-                        if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
-                            hrp.CFrame = CFrame.new(v.Position)
-                        end
-                    end
-                end
-            end
-        }
-    )
-end
 
 farm:AddToggle(
     {
