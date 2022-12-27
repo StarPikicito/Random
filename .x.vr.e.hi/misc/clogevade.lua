@@ -1,7 +1,7 @@
 [Evade]
 
 [12/27/2022]
-[-] Removed halloween items (lol)
+[-] Removed halloween toggles (lol)
 Merry christmas mate!
 
 [11/8/2022]
