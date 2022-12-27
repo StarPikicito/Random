@@ -1,5 +1,9 @@
 [Evade]
 
+[12/27/2022]
+[-] Removed halloween items (lol)
+Merry christmas mate!
+
 [11/8/2022]
 [+] Teleport to downed
 
