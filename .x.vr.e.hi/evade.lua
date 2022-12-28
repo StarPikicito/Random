@@ -135,8 +135,8 @@ function bb()
         if not getgenv().breakbots then
             break
         end
-        if game:GetService("Workspace").Game.Map.Parts:FindFirstChild("KillBricks") then
-            game:GetService("Workspace").Game.Map.Parts.KillBricks:Destroy()
+        if game:GetService("Workspace").Game:WaitForChild('Map'):WaitForChild('Parts'):FindFirstChild("KillBricks") then
+            game:GetService("Workspace").Game:WaitForChild('Map').KillBricks:Destroy()
         end
         task.wait()
         game.Workspace.Game.Players:WaitForChild(game.Players.LocalPlayer.Name):WaitForChild("HumanoidRootPart").CFrame =
