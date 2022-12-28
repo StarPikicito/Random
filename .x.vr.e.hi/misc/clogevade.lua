@@ -2,6 +2,7 @@
 
 [11/28/2022]
 [~] fixed autowin breaking
+[~] fixed dying with autowin :skull emoji:
 
 [12/27/2022]
 [-] Removed halloween toggles (lol)
