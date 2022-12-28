@@ -1,5 +1,8 @@
 [Evade]
 
+[11/28/2022]
+[~] fixed autowin breaking
+
 [12/27/2022]
 [-] Removed halloween toggles (lol)
 Merry christmas mate!
