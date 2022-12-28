@@ -1,6 +1,7 @@
 [Evade]
 
 [11/28/2022]
+[+] added tools spammer
 [~] fixed autowin breaking
 [~] fixed dying with autowin :skull emoji:
 
