@@ -130,7 +130,7 @@ end
 function bb()
     while getgenv().breakbots do
         n = math.random(1, 10000000)
-        z = math.random(50, 8000)
+        z = math.random(200, 8000)
         x = math.random(1, 10000000)
         if not getgenv().breakbots then
             break
