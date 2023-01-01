@@ -2,6 +2,10 @@
 
 
 
+--discord.gg/boronide, code generated using luamin.js™
+
+
+
 
 local library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)()
 local notifs =
@@ -570,6 +574,41 @@ misc:AddToggle(
 	end
 }
 )
+farm:AddToggle(
+        {
+	Name = "Gift Farm",
+	Callback = function(TF)
+		getgenv().tf = TF
+		if tf then
+			makeNotification(
+                        "warning",
+                        "dot.hub | Farm",
+                        'Please click on "Auto Respawn" in the GUI to avoid breaking'
+                    )
+			part = Instance.new("Part", workspace)
+			part.Anchored = true
+			part.CFrame = CFrame.new(100, 496, 100)
+		end
+		while task.wait(0.5) and getgenv().tf do
+			if not tf then
+				break
+			end
+			local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			local tickets = workspace.Game.Effects.Tickets
+			local hrp = char:WaitForChild("HumanoidRootPart", 3)
+			if hrp == nil then
+				return
+			end
+			hrp.CFrame = CFrame.new(100, 500, 100)
+			for i, v in next, tickets:GetDescendants() do
+				if v.IsA(v, "BasePart") and v.Name == "HumanoidRootPart" then
+					hrp.CFrame = CFrame.new(v.Position)
+				end
+			end
+		end
+	end
+}
+    )
 
 misc:AddToggle(
     {
