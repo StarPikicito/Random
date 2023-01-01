@@ -108,7 +108,7 @@ function handler(msg,speaker)
       if string.match(string.lower(msg),i) and not reportedfolder:FindFirstChild(speaker) then
         if (autoreportcfg.Blatant and autoreportcfg.Blatant == true) then
             for i = 0,9 do
-                players:ReportAbuse(players[speaker],'Text Chat',v,'He is breaking roblox TOS')
+                players:ReportAbuse(players[speaker],v,'He is breaking roblox TOS')
                 task.wait(0.2)
             end
         else
