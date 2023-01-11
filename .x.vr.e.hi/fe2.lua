@@ -62,7 +62,7 @@ end
 
 function Time(targetpos)
    --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
-	local tme = (game.Players.LocalPlayer.Character.PrimaryPart.Position - targetpos).Magnitude / 20
+	local tme = (game.Players.LocalPlayer.Character.Humanoid.RootPart.Position - targetpos).Magnitude / 20
 	return tme - 0.38
 end
 
@@ -82,7 +82,7 @@ end)
 function tp(cframe, speed)
 	local plr = game:GetService("Players").LocalPlayer.Character
 	local tween = game:GetService("TweenService")
-	tween:Create(plr.Humanoid.PrimaryPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
+	tween:Create(plr.Humanoid.RootPart, TweenInfo.new(speed, Enum.EasingStyle.Linear), {
 		CFrame = cframe
 	}):Play()
 end 
