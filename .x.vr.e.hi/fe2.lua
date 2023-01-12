@@ -135,6 +135,8 @@ mainTab:CreateToggle({
 					tp(v.CFrame, Time(v.Position))
 					task.wait(Time(v.Position))
 					game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled('Dead',true)
+					task.wait(0.1)
+					game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
 					task.wait(3)
 					repeat
 						task.wait()
