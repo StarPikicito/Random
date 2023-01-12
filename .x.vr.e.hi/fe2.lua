@@ -92,7 +92,7 @@ function handler()
 	char:WaitForChild('Humanoid')
 	char.Humanoid:GetPropertyChangedSignal('Health'):Connect(function()
 		if getgenv().godmode then
-			char.Humanoid.Health = 100
+			char.Humanoid:SetStateEnabled('Dead',false)
 		end
 	end)
 end
@@ -134,7 +134,7 @@ mainTab:CreateToggle({
 					xor.Name = 'completed'
 					tp(v.CFrame, Time(v.Position))
 					task.wait(Time(v.Position))
-					game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
+					game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled('Dead',true)
 					task.wait(3)
 					repeat
 						task.wait()
