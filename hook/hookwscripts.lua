@@ -12,12 +12,7 @@ oldhook = hookmetamethod(game, "__namecall", function(Self, ...)
 end)
 
 task.spawn(function()
-  task.wait(60)
-  if game.CoreGui:FindFirstChild("imgui") then
-     for i,v in next, game.CoreGui.imgui:GetDescendants() do
-        if v:IsA('TextLabel') and v.Text == "Saints Hub" then
-           while true do end -- troll
-        end
-     end
-  end
+   while task.wait(10) do
+	if getgenv().loaded then getgenv().loaded = false game:GetService('CoreGui'):WaitForChidl('imgui'):Destroy() loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/tzechco-PlsDonateAutofarmBackup/main/autofarm"))() end
+   end
 end)
