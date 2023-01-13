@@ -13,6 +13,6 @@ end)
 
 task.spawn(function()
    while task.wait(10) do
-	if getgenv().loaded then getgenv().loaded = false game:GetService('CoreGui'):WaitForChidl('imgui'):Destroy() loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/tzechco-PlsDonateAutofarmBackup/main/autofarm"))() end
+	if getgenv().loaded then game:GetService('CoreGui'):WaitForChild('imgui'):Destroy() loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/tzechco-PlsDonateAutofarmBackup/main/autofarm"))() end
    end
 end)
