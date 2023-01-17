@@ -101,9 +101,11 @@ local function bedtp()
 
     if stop('trans pride!') == 1 then
              while task.wait(0.07) do
+             pcall(function()
                 checkNetwork()
                 v = getPlr()
                 char:PivotTo(CFrame.new(v.Character.Humanoid.RootPart.Position))
+                end)
        end
     end
 
