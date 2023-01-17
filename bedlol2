@@ -43,7 +43,7 @@ function getPlr()
     nMagnitude = nil
     r = nil
     for i,v in next, game:service'Players':GetPlayers() do
-          if v.Character and v.Character.Humanoid.RootPart and v.TeamColor ~= game:service'Players'.LocalPlayer.TeamColor and v.Character:FindFirstChild('Humanoid') and v.Character.Humanoid.Health > 0 and v ~= game:service'Players'.LocalPlayer then
+          if (v.Character and v.Character:FindFirstChild('Humanoid')) and v.Character.Humanoid.RootPart and v.TeamColor ~= game:service'Players'.LocalPlayer.TeamColor and v.Character:FindFirstChild('Humanoid') and v.Character.Humanoid.Health > 0 and v ~= game:service'Players'.LocalPlayer then
                 magnitude = (v.Character.Humanoid.RootPart.Position - game:service'Players'.LocalPlayer.Character.Humanoid.RootPart.Position).Magnitude
                 if nMagnitude ~= nil then
                     if magnitude < nMagnitude then
@@ -101,11 +101,9 @@ local function bedtp()
 
     if stop('trans pride!') == 1 then
              while task.wait(0.07) do
-             pcall(function()
                 checkNetwork()
                 v = getPlr()
                 char:PivotTo(CFrame.new(v.Character.Humanoid.RootPart.Position))
-             end)
        end
     end
 
