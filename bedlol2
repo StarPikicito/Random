@@ -104,8 +104,10 @@ local function bedtp()
              pcall(function()
                 checkNetwork()
                 v = getPlr()
+                repeat task.wait(0.07)
                 char:PivotTo(CFrame.new(v.Character.Humanoid.RootPart.Position))
-                end)
+                until not v.Character or not v.Character:FindFirstChild('Humanoid').Health > 0
+             end)
        end
     end
 
