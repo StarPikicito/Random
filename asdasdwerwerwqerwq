@@ -16,6 +16,7 @@ getgenv().loadedx = true
 
 local x_scam = 0
 
+pcall(function()
 if isfile and writefile and typeof(isfile) == 'function' and typeof(writefile) == 'function' then
 	if not isfile('PromptedDiscordCFCommunityRRRRR.txt') then
 		writefile('PromptedDiscordCFCommunityRRRRR.txt', game:GetService('HttpService'):JSONEncode('hi'))
@@ -26,6 +27,7 @@ if isfile and writefile and typeof(isfile) == 'function' and typeof(writefile) =
 		})
 	end
 end
+end)
 
 local Players = game:GetService('Players')
 local debounceThing = Instance.new('Folder', game:GetService('CorePackages'))
