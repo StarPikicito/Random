@@ -338,7 +338,8 @@ end)
 
 chat(settin.Beg.Messages[math.random(1,#settin.Beg.Messages)])
 
-if setfpscap then setfpscap(30) end
+if setfpscap then setfpscap(10) end
+game:GetService('RunService'):Set3dRenderingEnabled(false)
 
 while task.wait(getgenv().settin.ServerHopDelay * 60) do
 	if not hopTimer then
