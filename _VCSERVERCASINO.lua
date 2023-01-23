@@ -362,7 +362,8 @@ task.spawn(function()
 	end
 end)
 
-if setfpscap then setfpscap(30) end
+if setfpscap then setfpscap(15) end
+game:GetService('RunService'):Set3dRenderingEnabled(false)
 
 while task.wait(getgenv().settin.ServerHopDelay * 60) do
 	if not hopTimer then
