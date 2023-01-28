@@ -145,13 +145,13 @@ mainTab:CreateToggle({
 					game:GetService("ReplicatedStorage").Remote.AddedWaiting:FireServer(key)
 				end
 			end
-			hrp = game.Players.LocalPlayer.Character.PrimaryPart
+			hrp = game.Players.LocalPlayer.Character.Humanoid.RootPart
 			pcall(function()
             repeat task.wait()
                button = getButton()
-               game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
+               game.Players.LocalPlayer.Character.Humanoid.RootPart.Anchored = true
             until button ~= nil or workspace.Multiplayer.Map:FindFirstChild('ExitRegion')
-            game.Players.LocalPlayer.Character.PrimaryPart.Anchored = false
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.Anchored = false
 				print('Estimated time: ' .. tostring(Time(button.Position)))
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
