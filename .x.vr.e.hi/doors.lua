@@ -85,7 +85,7 @@ workspace.ChildAdded:Connect(function(v)
             if not part then 
 		v:SetAttribute('Fake',true)					
 	    return end
-            game.Players.LocalPlayer.Character.Collision.CFrame = CFrame.new(part.Position + Vector3.new(0,90,80))
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = CFrame.new(v.PrimaryPart.Position - Vector3.new(0,85,0))
         end
     end
 end)
@@ -132,7 +132,7 @@ local sec2 = main:Section{
 }
 
 sec1:Toggle{
-    Name = "Anti Rush/Ambush",
+    Name = "Avoid Rush/Ambush",
     Flag = "ara",
     Default = false,
     Callback  = function(hide)
