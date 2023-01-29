@@ -130,7 +130,7 @@ workspace.ChildAdded:Connect(function(v)
             task.wait()
             part = v:WaitForChild("RushNew",2)
             if not part then 
-		v:AddAttribute('Fake',true)					
+		v:SetAttribute('Fake',true)					
 	    return end
             game.Players.LocalPlayer.Character.Collision.CFrame = CFrame.new(part.Position + Vector3.new(0,90,80))
         end
@@ -233,7 +233,7 @@ sec2:Toggle{
     Name = "Noclip",
     Callback = function(x)
         getgenv().col = x
-       for i,v in next, game.Players.LocalPlayer.Character:GetDescendants() do
+       for i,v in next, game.Players.LocalPlayer.Character:GetChildren() do
           if v.IsA(v,"BasePart") and getgenv().col == false then
              v.CanCollide = true
           elseif v.IsA(v,"BasePart") and getgenv().col == true then
