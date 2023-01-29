@@ -14,8 +14,10 @@ end)
 if not fireproximityprompt or not hookmetamethod then
     makeNotification("error","dot.hub | Error [DOORS]",'Your executor is not supported. Please get better one.')
     return
- end
+end
 
+if rconsoleprint then rconsoleprint('This has been unpatched for the new AC update') end
+ 	
 function startFiring()
    for i,v in next, game:GetService("Workspace").CurrentRooms:GetDescendants() do
       if v.IsA(v,"RemoteEvent") and string.match(v.Name,"Client") then
@@ -259,7 +261,7 @@ sec2:Toggle{
 sec2:Slider{
     Text = "Walkspeed Boost: [value]",
     Min = 0,
-    Max = 80,
+    Max = 7,
     Float = 0.5,
     Flag = "Speed Boost",
     Callback = function(sb)
