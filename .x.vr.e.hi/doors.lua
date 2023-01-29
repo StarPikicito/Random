@@ -10,6 +10,7 @@ getgenv().ws = 0
 getgenv().avoidsc = false
 getgenv().winhb = true
 end)
+	
 
 if not fireproximityprompt or not hookmetamethod then
     makeNotification("error","dot.hub | Error [DOORS]",'Your executor is not supported. Please get better one.')
@@ -55,54 +56,6 @@ old = hookmetamethod(game,"__namecall",function(self,...)
     
     return old(self,...)
 end)
-
-function farm()
-    --credits to 12341
-    while task.wait() do
-        local CF = CFrame.new
-        local LatestRoom = game:GetService("ReplicatedStorage").GameData.LatestRoom
-                pcall(function()
-                    lever = false
-                    key = false
-                    local CurrentDoor = workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Door")
-                    for i,v in ipairs(CurrentDoor.Parent:GetDescendants()) do
-                        if v.Name == "KeyObtain" then
-                            key = v
-                        end
-                    end
-                    for _,v in ipairs(CurrentDoor.Parent:GetDescendants()) do
-                        if v.Name == "LeverForGate" then
-                            lever = v
-                        end
-                    end
-                    if LatestRoom.Value == 50 then
-                        CurrentDoor = workspace.CurrentRooms[tostring(LatestRoom.Value + 1)]:WaitForChild("Door")
-                        game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                    else
-                        if key then
-                            game.Players.LocalPlayer.Character:PivotTo(CF(key.Hitbox.Position))
-                            fireproximityprompt(key.ModulePrompt)
-                            task.wait()
-                            game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                            task.wait()
-                            fireproximityprompt(CurrentDoor.Lock.UnlockPrompt)
-                        end
-                        if lever then
-                            game.Players.LocalPlayer.Character:PivotTo(CF(lever.Main.Position))
-                            task.wait()
-                            fireproximityprompt(lever.ActivateEventPrompt)
-                            task.wait()
-                            game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                        end
-                        game.Players.LocalPlayer.Character:PivotTo(CF(CurrentDoor.Door.Position))
-                    end
-                    CurrentDoor.ClientOpen:FireServer()
-                    if LatestRoom.Value >= 100 then
-                        makeNotification("information","dot.hub | Info",'Hopped to door 100')
-                    end
-                end)
-            end
-end
 
 chasePred.Changed:Connect(function(d)
     if getgenv().chasenot then
@@ -342,16 +295,6 @@ sec2:Button{
         game:GetService("Lighting").Brightness = 3
         game:GetService("Lighting").ClockTime = 12
 	end
-    end
-}
-
-
-sec2:Button{
-    Name = "Hop to door 100",
-    Callback = function()
-        if getgenv().farming then return end
-        getgenv().farming = true
-        farm()
     end
 }
 
