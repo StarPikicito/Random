@@ -337,9 +337,11 @@ sec2:Button{
 sec2:Button{
     Name = "Fullbright",
     Callback = function()
+	while task.wait(0.5) do
         game:GetService("Lighting").GlobalShadows = false
         game:GetService("Lighting").Brightness = 3
         game:GetService("Lighting").ClockTime = 12
+	end
     end
 }
 
