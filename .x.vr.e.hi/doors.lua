@@ -126,7 +126,8 @@ workspace.ChildAdded:Connect(function(v)
     if v.Name == "RushMoving" or v.Name == "AmbushMoving" then
         while workspace:FindFirstChild(v.Name) and getgenv().hxde do
             task.wait()
-            part = v:WaitForChild("RushNew")
+            part = v:WaitForChild("RushNew",2)
+            if not part then return end
             game.Players.LocalPlayer.Character.Collision.CFrame = CFrame.new(part.Position + Vector3.new(0,90,80))
         end
     end
