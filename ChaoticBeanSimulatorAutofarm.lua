@@ -35,13 +35,13 @@ end
 queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/ChaoticBeanSimulatorAutofarm.lua'))()")
 
 for i,v in next, game:GetService('Players'):GetPlayers() do
-    if v.UserId == 9779414 then -- SkyTheFloof
+    if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
         shop()
     end
 end
 
 game:GetService('Players').PlayerAdded:Connect(function(v)
-    if v.UserId == 9779414 then -- SkyTheFloof
+    if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
         shop()
     end
 end)
