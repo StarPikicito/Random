@@ -4,6 +4,7 @@ local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or 
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local httpservice = game:GetService('HttpService')
 local Players = game:GetService('Players')
+local blacklistedids = {9779414,46045403}
 
 function shop()
 	local gameId
@@ -35,16 +36,20 @@ end
 queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/ChaoticBeanSimulatorAutofarm.lua'))()")
 
 for i,v in next, game:GetService('Players'):GetPlayers() do
-    if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
-	Players.LocalPlayer:Kick('Serverhopping, dev | snitch are here')
-        shop()
+    for i, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
+	if v.UserId == id then
+	   Players.LocalPlayer:Kick('Serverhopping, blacklisted id (dev) joined')
+          shop()
+        end
     end
 end
 
 game:GetService('Players').PlayerAdded:Connect(function(v)
-    if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
-	Players.LocalPlayer:Kick('Serverhopping, dev | snitch joined')
-        shop()
+    for i, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
+	if v.UserId == id then
+	   Players.LocalPlayer:Kick('Serverhopping, blacklisted id (dev) joined')
+          shop()
+        end
     end
 end)
 
