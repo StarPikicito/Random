@@ -7,6 +7,15 @@ local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or 
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local httpservice = game:GetService('HttpService')
 local Players = game:GetService('Players')
+
+--[[REQUIRED]]
+local emergency = false
+local emergencytext = 'AntiCheat has been added'
+
+if emergency == true then
+   Players.LocalPlayer:Kick(emergencytext)	
+end
+
 local blacklistedids = {
 	9779414,
 	46045403
