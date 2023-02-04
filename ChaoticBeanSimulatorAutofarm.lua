@@ -3,6 +3,7 @@ repeat task.wait() until game:IsLoaded()
 local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local httpservice = game:GetService('HttpService')
+Players = game:GetService('Players')
 
 function shop()
 	local gameId
