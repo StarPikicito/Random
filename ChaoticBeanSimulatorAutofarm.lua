@@ -36,7 +36,7 @@ end
 queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/ChaoticBeanSimulatorAutofarm.lua'))()")
 
 for i,v in next, game:GetService('Players'):GetPlayers() do
-    for i, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
+    for _, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
 	if v.UserId == id then
 	   Players.LocalPlayer:Kick('Serverhopping, blacklisted id (dev) joined')
           shop()
@@ -45,7 +45,7 @@ for i,v in next, game:GetService('Players'):GetPlayers() do
 end
 
 game:GetService('Players').PlayerAdded:Connect(function(v)
-    for i, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
+    for _, id in next, blacklistedids do -- SkyTheFloof and Kocmoc (snitch)
 	if v.UserId == id then
 	   Players.LocalPlayer:Kick('Serverhopping, blacklisted id (dev) joined')
           shop()
