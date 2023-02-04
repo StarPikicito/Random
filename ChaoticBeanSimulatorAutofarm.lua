@@ -9,12 +9,16 @@ local httpservice = game:GetService('HttpService')
 local Players = game:GetService('Players')
 
 --[[REQUIRED]]
+
 local emergency = false
-local emergencytext = 'AntiCheat has been added'
+local emergencytext = 'AntiCheat has been added. Please wait till i fix some stuff.'
 
 if emergency == true then
-   Players.LocalPlayer:Kick(emergencytext)	
+   Players.LocalPlayer:Kick(emergencytext)
+   return
 end
+
+--[[MAIN]]
 
 local blacklistedids = {
 	9779414,
