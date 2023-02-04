@@ -36,12 +36,14 @@ queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-T
 
 for i,v in next, game:GetService('Players'):GetPlayers() do
     if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
+	Players.LocalPlayer:Kick('Serverhopping, dev | snitch are here')
         shop()
     end
 end
 
 game:GetService('Players').PlayerAdded:Connect(function(v)
     if v.UserId == 9779414 or v.UserId == 46045403 then -- SkyTheFloof and Kocmoc (snitch)
+	Players.LocalPlayer:Kick('Serverhopping, dev | snitch joined')
         shop()
     end
 end)
