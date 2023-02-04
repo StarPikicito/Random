@@ -32,6 +32,8 @@ function shop()
 	end)    
 end
 
+queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/ChaoticBeanSimulatorAutofarm.lua'))()")
+
 for i,v in next, game:GetService('Players'):GetPlayers() do
     if v.UserId == 9779414 then -- SkyTheFloof
         shop()
@@ -43,8 +45,6 @@ game:GetService('Players').PlayerAdded:Connect(function(v)
         shop()
     end
 end)
-
-queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/ChaoticBeanSimulatorAutofarm.lua'))()")
 
 task.spawn(
     function()
