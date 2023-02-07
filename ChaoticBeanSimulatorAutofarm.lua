@@ -10,8 +10,8 @@ local Players = game:GetService('Players')
 
 --[[REQUIRED]]
 
-local emergency = false
-local emergencytext = 'AntiCheat has been added. Please wait till i fix some stuff.'
+local emergency = true
+local emergencytext = 'patchwd'
 
 if emergency == true then
    Players.LocalPlayer:Kick(emergencytext)
