@@ -155,7 +155,7 @@ mainTab:CreateToggle({
 				print('Estimated time: ' .. tostring(Time(button.Position)))
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
-				task.wait(Time(button.Position))
+				task.wait(Time(button.Position) + 0.2)
 				hrp.Anchored = true
 				task.wait(0.06)
 				hrp.Anchored = false
