@@ -98,6 +98,9 @@ if hookfunc or hookfunction then
             end
         )
     end
+    hookfunc(rconsolewarn,function()
+      return false
+    end
 end
 
 game.DescendantAdded:Connect(
