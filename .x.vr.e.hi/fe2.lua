@@ -289,6 +289,7 @@ lpTab:CreateToggle({
 	CurrentValue = false,
 	Callback = function(gm)
 		getgenv().godmode = gm
+	        handler()
 	end,
 })
 
