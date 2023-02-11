@@ -64,7 +64,7 @@ end
 function Time(targetpos)
    --local tme = (targetpos - game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position).Magnitude / game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").WalkSpeed
 	local tme = (game.Players.LocalPlayer.Character.Humanoid.RootPart.Position - targetpos).Magnitude / 20
-	return tme - 0.15
+	return tme - 0.04
 end
 
 workspace.Multiplayer.DescendantAdded:Connect(function(t)
