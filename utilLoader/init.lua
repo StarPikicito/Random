@@ -156,3 +156,11 @@ lplr.Idled:Connect(function(time)
 end)
 
 GreenPrint('AntiAFK loaded \n')
+
+local ver = 'V1'
+local verMain = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/CF-Trail/random/main/utilLoader/ver"))()
+
+if ver ~= verMain then
+	print(ver,verMain)
+	game:GetService('Players').LocalPlayer:Kick('Please get newer version. Your ver: ' .. ver .. ' | Script ver: ' .. verMain)
+end
