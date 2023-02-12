@@ -1,10 +1,12 @@
-if not rconsoleprint or not hookmetamethod then
-	repeat task.wait() until game:IsLoaded()
+if not rconsoleprint or not hookmetamethod or not hookfunction then
+	repeat
+		task.wait()
+	until game:IsLoaded()
 	game:GetService('Players').LocalPlayer:Kick('Bad executor')
 end
 
 if not newcclosure then
-	rconsoleprint('PLEASE GET A BETTER EXECUTOR WHICH SUPPORTS newcclosure' .. '\n')
+	rconsoleprint('PLEASE GET A BETTER EXECUTOR THAT SUPPORTS newcclosure' .. '\n')
 end
 
 local closure = syn_newcclosure or newcclosure
@@ -37,6 +39,7 @@ end))
 --// PreloadBypass
 
 local tbl = {}
+local CollectionService = game:GetService('CollectionService')
 local CoreGui = game:GetService('CoreGui')
 
 for i, v in pairs(CoreGui.GetDescendants(CoreGui)) do
@@ -91,6 +94,26 @@ owold = hookmetamethod(game, '__namecall', closure(function(...)
 	return owold(...)
 end))
 
+-- // Memory bypass
+
+hookfunction((gcinfo), closure(function(...)
+	return math.random(400, 450)
+end))
+
+hookfunction((collectgarbage), closure(function(...)
+	return math.random(400, 450)
+end))
+
+
+local uwu
+uwu = hookmetamethod(game, '__namecall', closure(function(...)
+	local method = getnamecallmethod()
+	if method == 'GetTotalMemoryUsageMb' then
+		return math.random(400, 450)
+	end
+	return uwu(...)
+end))
+
 --// Script
 
 repeat
@@ -109,12 +132,12 @@ blueRPRINT(
    |_____/  /_____| /_____| |______|     |_____/     \____/     |_|    |_____| |______| |_____|    |_|    |_____| |______| |_____/ 
                                                                                                                                    
                                                             Made by szze#6220
-                                                                   V1
+                                                                  V1.1
                                                     
     ]] .. '\n'
 )
 
---// AntiKick
+--// AntiKick: __namecall
 
 local OldNameCall 
 OldNameCall = hookmetamethod(game, "__namecall", closure(function(...)
@@ -135,16 +158,42 @@ OldNameCall = hookmetamethod(game, "__namecall", closure(function(...)
 	return OldNameCall(...)
 end))
 
+--// AntiKick: __index
+
+task.spawn(function()
+	repeat task.wait() until game:IsLoaded()
+	local isAdonis = false
+	for i, v in next, game:GetService('ReplicatedStorage'):GetDescendants() do
+		print(i, v.Name)
+		if v.Name == "__FUNCTION" and v:IsA('RemoteFunction') then
+			isAdonis = true
+		end
+	end
+	if isAdonis == false then
+		hookfunction(lplr.Kick, closure(function(...)
+			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
+			return wait(9e9)
+		end))
+	else
+		rconsoleprint('@@RED@@')
+		rconsoleprint('Adonis detected! __index kick bypass will not work. \n')
+	end
+end)
+
+--// Prints
+
 GreenPrint('Client Anti-Kick loaded \n')
 GreenPrint('VoiceChat spoofer loaded \n')
 GreenPrint('PreloadBypass loaded \n')
+GreenPrint('Memory bypasser loaded \n')
 GreenPrint('Local GamePass bypasser loaded \n')
 
 --// AntiAFK
+
 local connections = getconnections or get_signal_cons
 if connections then
 	for i, v in next, getconnections(lplr.Idled) do
-	   v:Disable()
+		v:Disable()
 	end
 end
 
@@ -157,10 +206,11 @@ end)
 
 GreenPrint('AntiAFK loaded \n')
 
-local ver = 'V1'
+--// Ver Checker
+
+local ver = 'V1.1'
 local verMain = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/CF-Trail/random/main/utilLoader/ver"))()
 
 if ver ~= verMain then
-	print(ver,verMain)
 	game:GetService('Players').LocalPlayer:Kick('Please get newer version. Your ver: ' .. ver .. ' | Script ver: ' .. verMain)
 end
