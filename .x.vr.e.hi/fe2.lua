@@ -94,6 +94,8 @@ function handler()
 	char.Humanoid:GetPropertyChangedSignal('Health'):Connect(function()
 		if getgenv().godmode then
 			char.Humanoid:SetStateEnabled('Dead',false)
+		else
+			char.Humanoid:SetStateEnabled('Dead',true)	
 		end
 	end)
 end
