@@ -164,7 +164,6 @@ task.spawn(function()
 	repeat task.wait() until game:IsLoaded()
 	local isAdonis = false
 	for i, v in next, game:GetService('ReplicatedStorage'):GetDescendants() do
-		print(i, v.Name)
 		if v.Name == "__FUNCTION" and v:IsA('RemoteFunction') and v.Parent:IsA('RemoteEvent') then
 			isAdonis = true
 		end
