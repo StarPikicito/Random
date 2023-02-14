@@ -136,7 +136,7 @@ mainTab:CreateToggle({
 					xor = Instance.new('IntValue', map)
 					xor.Name = 'completed'
 					tp(v.CFrame, Time(v.Position))
-					task.wait(Time(v.Position))
+					task.wait(Time(v.Position) + 0.1)
 					game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled('Dead',true)
 					task.wait(0.1)
 					game.Players.LocalPlayer.Character.Humanoid:ChangeState('Dead')
@@ -159,7 +159,7 @@ mainTab:CreateToggle({
 				tp(button.CFrame, Time(button.Position))
 				task.wait(Time(button.Position) + 0.2)
 				hrp.Anchored = true
-				task.wait(0.06)
+				task.wait(0.12) -- no ac trigger
 				hrp.Anchored = false
             for i,v in next, char:GetChildren() do
                if v.IsA(v,'BasePart') then v.Velocity = Vector3.zero; v.RotVelocity = Vector3.zero end
