@@ -151,16 +151,11 @@ mainTab:CreateToggle({
 			pcall(function()
             repeat task.wait()
                button = getButton()
-               game.Players.LocalPlayer.Character.Humanoid.RootPart.Anchored = true
             until button ~= nil or workspace.Multiplayer.Map:FindFirstChild('ExitRegion')
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.Anchored = false
 				print('Estimated time: ' .. tostring(Time(button.Position)))
 				print('Teleporting!')
 				tp(button.CFrame, Time(button.Position))
 				task.wait(Time(button.Position) + 0.2)
-				hrp.Anchored = true
-				task.wait(0.12) -- no ac trigger
-				hrp.Anchored = false
             for i,v in next, char:GetChildren() do
                if v.IsA(v,'BasePart') then v.Velocity = Vector3.zero; v.RotVelocity = Vector3.zero end
             end
