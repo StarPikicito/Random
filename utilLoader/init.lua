@@ -170,12 +170,16 @@ task.spawn(function()
 	end
 	if isAdonis == false then
 		hookfunction(lplr.Kick, closure(function()
+		   if not checkcaller() then
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
 			return wait(9e9)
+		   end
 		end))
 		hookfunction(lplr.Destroy,closure(function()
+		  if not checkcaller() then
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [DESTROY] \n')
 			return wait(9e9)
+		  end
 		end))
 	else
 		rconsoleprint('@@RED@@')
