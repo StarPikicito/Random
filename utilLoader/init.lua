@@ -214,7 +214,7 @@ GreenPrint('Local GamePass bypasser loaded \n')
 
 local connections = getconnections or get_signal_cons
 if connections then
-	for i, v in next, getconnections(lplr.Idled) do
+	for i, v in next, connections(lplr.Idled) do
 		v:Disable()
 	end
 end
