@@ -189,7 +189,7 @@ local qwq
 qwq = hookmetamethod(game,'__namecall',closure(function(self,...)
 	local kscriptz,kscript
 	local method = getnamecallmethod()
-	if self == lplr and string.lower(method) == 'destroy' then
+	if self == lplr and string.lower(method) == 'destroy' and not checkcaller() then
 		kscriptz = getcallingscript()
 		if kscriptz then
 			kscript = kscriptz:GetFullName()
