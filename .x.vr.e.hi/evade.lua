@@ -1,12 +1,3 @@
---discord.gg/boronide, code generated using luamin.js™
-
-
-
---discord.gg/boronide, code generated using luamin.js™
-
-
-
-
 local library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)()
 local notifs =
     loadstring(
@@ -257,7 +248,7 @@ end)
 local lib =
     library:CreateWindow(
     {
-	Name = "dot.hub | Evade 🎄",
+	Name = "dot.hub | Evade",
 	Themeable = {
 		Info = "lol"
 	}
@@ -385,7 +376,7 @@ player:AddToggle(
 	Callback = function(fastrev)
 		getgenv().far = fastrev
 		if getgenv().far then
-			workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
+			workspace.Game.Settings:SetAttribute("ReviveTime", 2.25)
 		else
 			workspace.Game.Settings:SetAttribute('ReviveTime', 3)
 		end
