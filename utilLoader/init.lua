@@ -124,6 +124,7 @@ hookfunction(game.Shutdown, closure(function(...)
 		LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
 		return wait(9e9)
 	end
+	game.Shutdown(game)
 end))
 
 local twt
@@ -212,6 +213,7 @@ task.spawn(function()
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [DESTROY] \n')
 			return wait(9e9)
 		end
+		lplr.Destroy(lplr)
 	end))
 	if isAdonis == false then
 		hookfunction(lplr.Kick, closure(function(...)
@@ -222,6 +224,7 @@ task.spawn(function()
 				LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
 				return wait(9e9)
 			end
+			lplr.Kick(lplr,args[2])
 		end))
 	else
 		rconsoleprint('@@RED@@')
