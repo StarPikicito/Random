@@ -9,7 +9,9 @@ if not newcclosure then
 	rconsoleprint('PLEASE GET A BETTER EXECUTOR THAT SUPPORTS newcclosure' .. '\n')
 end
 
-local closure = syn_newcclosure or newcclosure
+local closure = syn_newcclosure or newcclosure or function (w)
+	--aaa
+end
 
 local function blueRPRINT(text)
 	rconsoleprint('@@BLUE@@')
@@ -132,7 +134,7 @@ blueRPRINT(
    |_____/  /_____| /_____| |______|     |_____/     \____/     |_|    |_____| |______| |_____|    |_|    |_____| |______| |_____/ 
                                                                                                                                    
                                                             Made by szze#6220
-                                                                  V1.2
+                                                                  V1.3
                                                     
     ]] .. '\n'
 )
@@ -159,27 +161,47 @@ OldNameCall = hookmetamethod(game, "__namecall", closure(function(...)
 end))
 
 --// AntiKick: __index
-
+local isAdonis = false
 task.spawn(function()
-	repeat task.wait() until game:IsLoaded()
-	local isAdonis = false
+	repeat
+		task.wait()
+	until game:IsLoaded()
 	for i, v in next, game:GetService('ReplicatedStorage'):GetDescendants() do
 		if v.Name == "__FUNCTION" and v:IsA('RemoteFunction') and v.Parent:IsA('RemoteEvent') then
 			isAdonis = true
 		end
 	end
-	if isAdonis == false then
-		hookfunction(lplr.Kick, closure(function()
-		   if not checkcaller() then
-			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
-			return wait(9e9)
-		   end
-		end))
-		hookfunction(lplr.Destroy,closure(function()
-		  if not checkcaller() then
+	game:GetService('ReplicatedStorage').ChildAdded:Connect(function(v)
+		task.wait()
+		if v:IsA('RemoteEvent') and v:FindFirstChildWhichIsA('RemoteFunction') and v:FindFirstAncestorWhichIsA('RemoteFunction').Name == '__FUNCTION' then
+			isAdonis = true
+		end
+	end)
+	hookfunction(lplr.Destroy, closure(function(...)
+		local args = {
+			...
+		}
+		if args[1] == lplr and not checkcaller() then
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [DESTROY] \n')
 			return wait(9e9)
-		  end
+		end
+	end))
+	hookfunction(game.Shutdown, closure(function(...)
+		local args = { ... }
+		if args[1] == game and not checkcaller() then
+			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
+			return wait(9e9)
+		end
+	end))
+	if isAdonis == false then
+		hookfunction(lplr.Kick, closure(function(...)
+			local args = {
+				...
+			}
+			if args[1] == lplr and not checkcaller() and not isAdonis then
+				LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
+				return wait(9e9)
+			end
 		end))
 	else
 		rconsoleprint('@@RED@@')
@@ -190,8 +212,8 @@ end)
 --// AntiKick: Destroy() method
 
 local qwq
-qwq = hookmetamethod(game,'__namecall',closure(function(self,...)
-	local kscriptz,kscript
+qwq = hookmetamethod(game, '__namecall', closure(function(self, ...)
+	local kscriptz, kscript
 	local method = getnamecallmethod()
 	if self == lplr and string.lower(method) == 'destroy' and not checkcaller() then
 		kscriptz = getcallingscript()
@@ -203,7 +225,26 @@ qwq = hookmetamethod(game,'__namecall',closure(function(self,...)
 		LMagentaPrint("szze's utilities | Blocked kick from " .. tostring(kscript) .. ' | Method used: __namecall [DESTROY] \n')
 		return wait(9e9)
 	end
-	return qwq(self,...)
+	return qwq(self, ...)
+end))
+
+--// AntiKick: Shutdown() method
+
+local twt
+twt = hookmetamethod(game, '__namecall', closure(function(self, ...)
+	local kscriptz, kscript
+	local method = getnamecallmethod()
+	if self == game and string.lower(method) == 'shutdown' and not checkcaller() then
+		kscriptz = getcallingscript()
+		if kscriptz then
+			kscript = kscript:GetFullName()
+		else
+			kscript = "Couldn't fetch"
+		end
+		LMagentaPrint("szze's utilities | Blocked kick from " .. tostring(kscript) .. ' | Method used: __namecall [SHUTDOWN] \n')
+		return wait(9e9)
+	end
+	return twt(self, ...)
 end))
 
 --// Prints
@@ -234,7 +275,7 @@ GreenPrint('AntiAFK loaded \n')
 
 --// Ver Checker
 
-local ver = 'V1.2'
+local ver = 'V1.3'
 local verMain = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/CF-Trail/random/main/utilLoader/ver"))()
 
 if ver ~= verMain then
