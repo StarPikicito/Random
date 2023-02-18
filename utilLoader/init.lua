@@ -1,7 +1,7 @@
 if not rconsoleprint or not hookmetamethod or not hookfunction then
 	repeat
 		task.wait()
-	until game:IsLoaded()
+	until game:GetService('Players').LocalPlayer
 	game:GetService('Players').LocalPlayer:Kick('Bad executor')
 end
 
@@ -116,6 +116,33 @@ uwu = hookmetamethod(game, '__namecall', closure(function(...)
 	return uwu(...)
 end))
 
+--// AntiShutdown
+
+hookfunction(game.Shutdown, closure(function(...)
+	local args = { ... }
+	if args[1] == game and not checkcaller() then
+		LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
+		return wait(9e9)
+	end
+end))
+
+local twt
+twt = hookmetamethod(game, '__namecall', closure(function(self, ...)
+	local kscriptz, kscript
+	local method = getnamecallmethod()
+	if self == game and string.lower(method) == 'shutdown' and not checkcaller() then
+		kscriptz = getcallingscript()
+		if kscriptz then
+			kscript = kscript:GetFullName()
+		else
+			kscript = "Couldn't fetch"
+		end
+		LMagentaPrint("szze's utilities | Blocked kick from " .. tostring(kscript) .. ' | Method used: __namecall [SHUTDOWN] \n')
+		return wait(9e9)
+	end
+	return twt(self, ...)
+end))
+
 --// Script
 
 repeat
@@ -186,13 +213,6 @@ task.spawn(function()
 			return wait(9e9)
 		end
 	end))
-	hookfunction(game.Shutdown, closure(function(...)
-		local args = { ... }
-		if args[1] == game and not checkcaller() then
-			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
-			return wait(9e9)
-		end
-	end))
 	if isAdonis == false then
 		hookfunction(lplr.Kick, closure(function(...)
 			local args = {
@@ -226,25 +246,6 @@ qwq = hookmetamethod(game, '__namecall', closure(function(self, ...)
 		return wait(9e9)
 	end
 	return qwq(self, ...)
-end))
-
---// AntiKick: Shutdown() method
-
-local twt
-twt = hookmetamethod(game, '__namecall', closure(function(self, ...)
-	local kscriptz, kscript
-	local method = getnamecallmethod()
-	if self == game and string.lower(method) == 'shutdown' and not checkcaller() then
-		kscriptz = getcallingscript()
-		if kscriptz then
-			kscript = kscript:GetFullName()
-		else
-			kscript = "Couldn't fetch"
-		end
-		LMagentaPrint("szze's utilities | Blocked kick from " .. tostring(kscript) .. ' | Method used: __namecall [SHUTDOWN] \n')
-		return wait(9e9)
-	end
-	return twt(self, ...)
 end))
 
 --// Prints
