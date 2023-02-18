@@ -1,4 +1,6 @@
 [Evade]
+[2/18/2023]
+[~] fixed Fast Revive not healing sometimes
 
 [1/1/2023]
 [+] gift autofarm
