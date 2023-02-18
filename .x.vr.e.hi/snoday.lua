@@ -1,4 +1,4 @@
-workspace.FallenPartsDestroyHeight = -50000
+workspace.FallenPartsDestroyHeight = 0/0
 
 _G.fling = false
 _G.SpamSounds = true
