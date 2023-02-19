@@ -124,7 +124,7 @@ hookfunction(game.Shutdown, closure(function(...)
 		LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
 		return wait(9e9)
 	end
-	game.Shutdown(game)
+	game.Shutdown(args[1])
 end))
 
 local twt
@@ -201,7 +201,7 @@ task.spawn(function()
 	end
 	game:GetService('ReplicatedStorage').ChildAdded:Connect(function(v)
 		task.wait()
-		if v:IsA('RemoteEvent') and v:FindFirstChildWhichIsA('RemoteFunction') and v:FindFirstAncestorWhichIsA('RemoteFunction').Name == '__FUNCTION' then
+		if v:IsA('RemoteEvent') and v:FindFirstChildWhichIsA('RemoteFunction') and v:FindFirstChildWhichIsA('RemoteFunction').Name == '__FUNCTION' then
 			isAdonis = true
 		end
 	end)
@@ -213,7 +213,7 @@ task.spawn(function()
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [DESTROY] \n')
 			return wait(9e9)
 		end
-		lplr.Destroy(lplr)
+		lplr.Destroy(args[1])
 	end))
 	if isAdonis == false then
 		hookfunction(lplr.Kick, closure(function(...)
@@ -224,7 +224,7 @@ task.spawn(function()
 				LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
 				return wait(9e9)
 			end
-			lplr.Kick(lplr,args[2])
+			lplr.Kick(args[1],args[2])
 		end))
 	else
 		rconsoleprint('@@RED@@')
