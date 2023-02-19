@@ -120,11 +120,10 @@ end))
 
 hookfunction(game.Shutdown, closure(function(...)
 	local args = { ... }
-	if args[1] == game and not checkcaller() then
+	if not checkcaller() then
 		LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [SHUTDOWN] \n')
 		return wait(9e9)
 	end
-	game.Shutdown(args[1])
 end))
 
 local twt
@@ -209,22 +208,20 @@ task.spawn(function()
 		local args = {
 			...
 		}
-		if args[1] == lplr and not checkcaller() then
+		if not checkcaller() then
 			LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index [DESTROY] \n')
 			return wait(9e9)
 		end
-		lplr.Destroy(args[1])
 	end))
 	if isAdonis == false then
 		hookfunction(lplr.Kick, closure(function(...)
 			local args = {
 				...
 			}
-			if args[1] == lplr and not checkcaller() and not isAdonis then
+			if not checkcaller() and not isAdonis then
 				LMagentaPrint("szze's utilities | Blocked kick " .. '| Method used: __index \n')
 				return wait(9e9)
 			end
-			lplr.Kick(args[1],args[2])
 		end))
 	else
 		rconsoleprint('@@RED@@')
