@@ -1,5 +1,8 @@
 local hook = hookfunction
 local closure = syn_newcclosure or newcclosure or function(_) end
+local oldReq = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
+local gGet = game.HttpGet
+local gAsync = game.HttpGetAsync
 
 hook(game.HttpGet, closure(function(...)
     return nil
@@ -15,10 +18,6 @@ if typeof(hook) ~= "function" then
     repeat task.wait() until game:IsLoaded()
     game:GetService('Players').LocalPlayer:Kick('Missing hookfunction')
 end
-
-local oldReq = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
-local gGet = game.HttpGet
-local gAsync = game.HttpGetAsync
 
 function cmds.HttpGet(...)
     local args = { ... }
