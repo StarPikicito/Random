@@ -19,7 +19,8 @@ if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:Fin
 	game:GetService("StarterPlayer").StarterCharacterScripts:FindFirstChild("LocalScript"):Destroy()
 end
 game:GetService('ReplicatedStorage').Remote.ReqCharVars.OnClientInvoke = function()
-   return {196.1999969482422,50,20}
+wait(9e9)
+   return {}
 end
 
 game:GetService("ReplicatedStorage").Remote.FetchPos.OnClientInvoke = function()
