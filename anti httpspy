@@ -1,3 +1,11 @@
+hook(game.HttpGet, closure(function(...)
+    return nil
+end))
+
+hook(game.HttpGetAsync, closure(function(...)
+    return nil
+end))
+
 local cmds = {}
 local hook = hookfunction
 local closure = syn_newcclosure or newcclosure or function(_) end
@@ -10,14 +18,6 @@ end
 local oldReq = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local gGet = game.HttpGet
 local gAsync = game.HttpGetAsync
-
-hook(game.HttpGet, closure(function(...)
-    return nil
-end))
-
-hook(game.HttpGetAsync, closure(function(...)
-    return nil
-end))
 
 function cmds.HttpGet(...)
     local args = { ... }
