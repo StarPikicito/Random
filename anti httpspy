@@ -25,7 +25,7 @@ end;
 if hookfunction and type(hookfunction) == 'function' then
 	h = hookfunction;
 	n = setclipboard or toclipboard or clipboard;
-    if type(n) ~= 'function' then
+    if n and type(n) ~= 'function' then
       while true do end
     end
 	h(print, function()
