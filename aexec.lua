@@ -21,7 +21,7 @@ msgdone.OnClientEvent:Connect(function(stuff)
 	for _i, _v in next, ids do
 		if game:GetService("Players")[speaker].UserId == _v and game:GetService("Players")[speaker] ~= game:GetService('Players').LocalPlayer then
 			if msg == ".hello" then
-				game:GetService('ReplicatedStorage'):WaitForChild('DefaultChatSystemChatEvents'):WaitForChild('SayMessageRequest'):FireServer('/w ' .. speaker .. ' | [CF] ' .. banbypass[math.random(1, #banbypass)], 'All')
+				game:GetService('ReplicatedStorage'):WaitForChild('DefaultChatSystemChatEvents'):WaitForChild('SayMessageRequest'):FireServer('/w ' .. speaker .. ' | [CF] ' .. banbypass[math.random(1, #banbypass)] .. ' | dev debug, dont mind', 'All')
 			end
 		end
 	end
