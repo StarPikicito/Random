@@ -1,4 +1,6 @@
-repeat task.wait() until game:GetService('Players').LocalPlayer
+repeat
+	task.wait()
+until game:GetService('Players').LocalPlayer
 
 local ids = {
 	4245576625,
@@ -12,18 +14,15 @@ local banbypass = {
 	'こ'
 }
 
-game:GetService('Players').PlayerAdded:Connect(function(plr)
+local msgdone = game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents.OnMessageDoneFiltering
+msgdone.OnClientEvent:Connect(function(stuff)
+	local speaker = tostring(stuff.FromSpeaker)
+	local msg = tostring(stuff.Message)
 	for _i, _v in next, ids do
-		if plr.UserId == _v and plr ~= game:GetService('Players').LocalPlayer then
-			game:GetService('ReplicatedStorage'):WaitForChild('DefaultChatSystemChatEvents'):WaitForChild('SayMessageRequest'):FireServer('/w ' .. plr.Name .. ' | [CF] ' .. banbypass[math.random(1, #banbypass)],'All')
+		if game:GetService("Players")[speaker].UserId == _v and game:GetService("Players")[speaker] ~= game:GetService('Players').LocalPlayer then
+			if msg == ".hello" then
+				game:GetService('ReplicatedStorage'):WaitForChild('DefaultChatSystemChatEvents'):WaitForChild('SayMessageRequest'):FireServer('/w ' .. speaker .. ' | [CF] ' .. banbypass[math.random(1, #banbypass)], 'All')
+			end
 		end
 	end
 end)
-
-for i, plr in next, game:GetService('Players'):GetPlayers() do
-	for _i, _v in next, ids do
-		if plr.UserId == _v and plr ~= game:GetService('Players').LocalPlayer then
-			game:GetService('ReplicatedStorage'):WaitForChild('DefaultChatSystemChatEvents'):WaitForChild('SayMessageRequest'):FireServer('/w ' .. plr.Name .. ' | [CF] ' .. banbypass[math.random(1, #banbypass)],'All')
-		end
-	end
-end
