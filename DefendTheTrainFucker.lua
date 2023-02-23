@@ -63,12 +63,13 @@ end)
 queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/CF-Trail/random/main/DefendTheTrainFucker.lua'))()")
 
 shared.TeleportToSky = true
-
 if shared.TeleportToSky then
 local char = game:GetService('Players').LocalPlayer.Character
+if char and char:FindFirstChild('HumanoidRootPart') then
 char.HumanoidRootPart.CFrame = CFrame.new(0,9e9,0)
 task.wait(0.5)
 char.HumanoidRootPart.Anchored = true
+end
 end
 while wait(1.55) do --// don't change it's the best
 game:GetService("NetworkClient"):SetOutgoingKBPSLimit(math.huge * math.huge)
