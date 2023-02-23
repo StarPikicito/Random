@@ -5,6 +5,7 @@ local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or 
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local httpservice = game:GetService('HttpService')
 local Players = players
+game:GetService('RunService'):Stop() -- optimization
 
 function shop()
 	local gameId
