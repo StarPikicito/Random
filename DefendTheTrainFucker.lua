@@ -1,4 +1,4 @@
-repeat task.wait() until game:GetService('Players').LocalPlayer and game:IsLoaded() and game:GetService('Players'):GetPlayers() > 1
+repeat task.wait() until game:GetService('Players').LocalPlayer and game:IsLoaded() and #game:GetService('Players'):GetPlayers() > 1
 task.wait(1) -- crashing fix
 local modvals = {97157607,1031425327,85608982,95679311,169249462,449787885,2831857,22739600,96380088,112595578,223507359,8672174,1454358278,560637277,80409277,68738329,77138760,117931886,136623130,137045959,34496596,3330667,58366835,34627754,71374194,22724524,13886182}
 local players = game:GetService('Players')
