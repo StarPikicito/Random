@@ -39,6 +39,7 @@ players.PlayerAdded:Connect(function(plr)
     for i,v in next, modvals do
         if plr.UserId == v then
             game:GetService('Players').LocalPlayer:Kick('Mod')
+	    task.wait(0.4) -- dumbass scriptware
             shop()
         end
     end
@@ -48,6 +49,7 @@ for _,plr in next, players:GetPlayers() do
     for i,v in next, modvals do
         if plr.UserId == v then
             game:GetService('Players').LocalPlayer:Kick('Mod')
+	    task.wait(0.4)
             shop()
         end
     end
