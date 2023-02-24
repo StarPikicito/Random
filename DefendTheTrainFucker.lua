@@ -59,7 +59,6 @@ print'anti ban loaded'
 
 task.spawn(function()
     while task.wait(5) do
-        pcall(function() game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents.SayMessageRequest:FireServer('#mod_help | szze#622 0','All') end)
 	if #players:GetPlayers() < 4 then
 	   shop()			
 	end
