@@ -8,6 +8,21 @@ local httpservice = game:GetService('HttpService')
 local Players = players
 game:GetService('RunService'):Stop() -- optimization
 
+function webhook(msg)
+	pcall(function()
+		httprequest({
+			Url = getgenv().webhook,
+			Body = httpservice:JSONEncode({
+				["content"] = msg
+			}),
+			Method = "POST",
+			Headers = {
+				["content-type"] = "application/json"
+			}
+		})
+	end)
+end
+
 function shop()
 	local gameId
 	gameId = game.PlaceId
@@ -39,6 +54,7 @@ players.PlayerAdded:Connect(function(plr)
     for i,v in next, modvals do
         if plr.UserId == v then
             game:GetService('Players').LocalPlayer:Kick('Mod')
+	    webhook('Mod joined, serverhopping')
 	    task.wait(0.4) -- dumbass scriptware
             shop()
         end
@@ -49,6 +65,7 @@ for _,plr in next, players:GetPlayers() do
     for i,v in next, modvals do
         if plr.UserId == v then
             game:GetService('Players').LocalPlayer:Kick('Mod')
+	    webhook('Mod is in, serverhopping')
 	    task.wait(0.4)
             shop()
         end
@@ -60,6 +77,7 @@ print'anti ban loaded'
 task.spawn(function()
     while task.wait(5) do
 	if #players:GetPlayers() < 4 then
+	   webhook('Players left, serverhopping')
 	   shop()			
 	end
     end
